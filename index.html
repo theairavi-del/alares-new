@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alares Architects and Engineers</title>
     <meta name="description" content="Alares Architects and Engineers - Great experiences build great results. Architecture, MEP, Structural, Commissioning services since 2007.">
+    <meta name="theme-color" content="#c1cbe0">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -14,13 +15,13 @@
             --primary-dark: #3a475e;
             --primary-darker: #273142;
             --accent: #c1cbe0;
-            --accent-light: #e8ecf5;
+            --accent-dark: #7288b3;
             --text: #1b1b1b;
-            --text-light: #575757;
-            --text-lighter: #878787;
+            --text-secondary: #575757;
+            --text-tertiary: #878787;
             --white: #ffffff;
             --bg-light: #f6f6f6;
-            --border: #b0b0b0;
+            --border: rgba(176, 176, 176, 0.5);
         }
 
         * {
@@ -37,14 +38,15 @@
             font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
             font-size: 16px;
             line-height: 1.6;
-            color: var(--text);
+            color: var(--text-secondary);
             background: var(--white);
         }
 
         h1, h2, h3, h4, h5, h6 {
             font-family: 'Work Sans', sans-serif;
-            font-weight: 600;
-            line-height: 1.25;
+            font-weight: 500;
+            color: var(--text);
+            line-height: 1.3;
         }
 
         /* Navigation */
@@ -55,8 +57,8 @@
             right: 0;
             z-index: 1000;
             background: rgba(255, 255, 255, 0.98);
-            backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(0,0,0,0.08);
+            border-bottom: 1px solid var(--border);
+            transition: all 0.3s ease;
         }
 
         .nav-container {
@@ -67,12 +69,6 @@
             align-items: center;
             justify-content: space-between;
             height: 75px;
-        }
-
-        .logo {
-            display: flex;
-            align-items: center;
-            text-decoration: none;
         }
 
         .logo img {
@@ -94,26 +90,11 @@
             font-weight: 600;
             font-size: 15px;
             transition: color 0.2s;
-            position: relative;
+            font-family: 'Work Sans', sans-serif;
         }
 
         .nav-menu a:hover {
             color: var(--primary-dark);
-        }
-
-        .nav-menu a::after {
-            content: '';
-            position: absolute;
-            bottom: -4px;
-            left: 0;
-            width: 0;
-            height: 2px;
-            background: var(--primary);
-            transition: width 0.3s;
-        }
-
-        .nav-menu a:hover::after {
-            width: 100%;
         }
 
         .mobile-toggle {
@@ -121,6 +102,7 @@
             background: none;
             border: none;
             cursor: pointer;
+            color: var(--text);
         }
 
         /* Hero */
@@ -131,7 +113,6 @@
             align-items: center;
             justify-content: center;
             overflow: hidden;
-            margin-top: 0;
         }
 
         .hero-image {
@@ -149,7 +130,7 @@
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(10,22,40,0.4) 0%, rgba(10,22,40,0.6) 100%);
+            background: linear-gradient(to bottom, rgba(10,22,40,0.3) 0%, rgba(10,22,40,0.5) 100%);
             z-index: 1;
         }
 
@@ -162,14 +143,15 @@
             color: var(--white);
         }
 
-        .hero h1 {
+        .hero-content h1 {
             font-size: clamp(32px, 6vw, 56px);
-            font-weight: 700;
+            font-weight: 600;
             margin-bottom: 24px;
+            color: var(--white);
             text-shadow: 0 2px 20px rgba(0,0,0,0.3);
         }
 
-        .hero p {
+        .hero-content p {
             font-size: clamp(16px, 2.5vw, 20px);
             opacity: 0.95;
             max-width: 600px;
@@ -184,7 +166,7 @@
             padding: 16px 32px;
             font-family: 'Work Sans', sans-serif;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 500;
             text-decoration: none;
             border-radius: 4px;
             transition: all 0.3s;
@@ -193,23 +175,12 @@
         }
 
         .btn-primary {
-            background: var(--primary-dark);
-            color: var(--white);
+            background: var(--white);
+            color: var(--text);
         }
 
         .btn-primary:hover {
-            background: var(--primary-darker);
-            transform: translateY(-2px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .btn-white {
-            background: var(--white);
-            color: var(--primary-dark);
-        }
-
-        .btn-white:hover {
-            background: var(--accent-light);
+            background: var(--accent);
         }
 
         /* Sections */
@@ -223,22 +194,23 @@
             padding: 0 24px;
         }
 
-        .section-title {
-            font-size: clamp(28px, 4vw, 38px);
-            color: var(--text);
-            margin-bottom: 16px;
-            text-align: center;
-        }
-
-        .section-subtitle {
-            font-size: 18px;
-            color: var(--text-light);
+        .section-header {
             text-align: center;
             max-width: 700px;
             margin: 0 auto 60px;
         }
 
-        /* Mission Section */
+        .section-title {
+            font-size: clamp(28px, 4vw, 38px);
+            margin-bottom: 16px;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-secondary);
+        }
+
+        /* Mission */
         .mission {
             background: var(--bg-light);
         }
@@ -253,7 +225,7 @@
         .mission-image {
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
         }
 
         .mission-image img {
@@ -266,22 +238,15 @@
         .mission-content h2 {
             font-size: 32px;
             margin-bottom: 24px;
-            color: var(--text);
         }
 
         .mission-content p {
             font-size: 17px;
             line-height: 1.8;
-            color: var(--text-light);
             margin-bottom: 20px;
         }
 
-        .highlight {
-            color: var(--primary-dark);
-            font-weight: 600;
-        }
-
-        /* Name Origin Section */
+        /* Name Origin */
         .name-origin {
             background: var(--primary-dark);
             color: var(--white);
@@ -305,6 +270,7 @@
             font-size: 19px;
             line-height: 1.8;
             margin-bottom: 20px;
+            color: rgba(255,255,255,0.9);
         }
 
         .name-content em {
@@ -312,19 +278,7 @@
             color: var(--accent);
         }
 
-        .name-quote {
-            font-family: 'Work Sans', sans-serif;
-            font-size: 24px;
-            font-weight: 500;
-            color: var(--accent);
-            margin: 40px 0;
-            padding: 30px;
-            border-left: 4px solid var(--accent);
-            background: rgba(255,255,255,0.05);
-            text-align: left;
-        }
-
-        /* Services Grid */
+        /* Services */
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
@@ -333,7 +287,7 @@
 
         .service-card {
             background: var(--white);
-            border: 1px solid rgba(0,0,0,0.08);
+            border: 1px solid var(--border);
             border-radius: 8px;
             padding: 40px 30px;
             text-align: center;
@@ -341,15 +295,15 @@
         }
 
         .service-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.1);
             border-color: var(--accent);
         }
 
         .service-icon {
             width: 70px;
             height: 70px;
-            background: var(--accent-light);
+            background: var(--accent);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -366,12 +320,11 @@
         .service-card h3 {
             font-size: 20px;
             margin-bottom: 12px;
-            color: var(--text);
         }
 
         .service-card p {
             font-size: 15px;
-            color: var(--text-light);
+            color: var(--text-secondary);
             line-height: 1.7;
         }
 
@@ -402,7 +355,7 @@
         .featured-image {
             border-radius: 8px;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
         }
 
         .featured-image img {
@@ -415,13 +368,11 @@
         .featured-content h3 {
             font-size: 28px;
             margin-bottom: 20px;
-            color: var(--text);
         }
 
-        .featured-content > p {
+        .featured-content p {
             font-size: 16px;
             line-height: 1.8;
-            color: var(--text-light);
             margin-bottom: 16px;
         }
 
@@ -436,7 +387,6 @@
             gap: 12px;
             margin-bottom: 14px;
             font-size: 15px;
-            color: var(--text);
         }
 
         .feature-list li::before {
@@ -444,6 +394,34 @@
             color: var(--primary);
             font-weight: 700;
             flex-shrink: 0;
+        }
+
+        /* Gallery */
+        .gallery {
+            background: var(--bg-light);
+        }
+
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 20px;
+        }
+
+        .gallery-item {
+            border-radius: 8px;
+            overflow: hidden;
+            aspect-ratio: 4/3;
+        }
+
+        .gallery-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.3s;
+        }
+
+        .gallery-item:hover img {
+            transform: scale(1.05);
         }
 
         /* Stats */
@@ -463,7 +441,7 @@
         .stat-number {
             font-family: 'Work Sans', sans-serif;
             font-size: 48px;
-            font-weight: 700;
+            font-weight: 600;
             color: var(--accent);
             margin-bottom: 8px;
         }
@@ -490,6 +468,7 @@
         }
 
         .footer-brand h3 {
+            color: var(--white);
             font-size: 24px;
             margin-bottom: 16px;
         }
@@ -504,6 +483,7 @@
             font-size: 16px;
             margin-bottom: 20px;
             color: var(--accent);
+            font-weight: 600;
         }
 
         .footer-links {
@@ -539,6 +519,10 @@
                 grid-template-columns: repeat(2, 1fr);
             }
             
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
             .footer-grid {
                 grid-template-columns: 1fr 1fr;
             }
@@ -563,7 +547,8 @@
                 direction: ltr;
             }
             
-            .services-grid {
+            .services-grid,
+            .gallery-grid {
                 grid-template-columns: 1fr;
             }
             
@@ -574,7 +559,6 @@
             
             .footer-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
             }
         }
     </style>
@@ -589,7 +573,7 @@
             <ul class="nav-menu">
                 <li><a href="#mission">Our Mission</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#case-studies">Case Studies</a></li>
+                <li><a href="#gallery">Projects</a></li>
                 <li><a href="#contact">Contact</a></li>
             </ul>
             <button class="mobile-toggle" aria-label="Menu">
@@ -609,7 +593,7 @@
         <div class="hero-content">
             <h1>Great experiences build great results</h1>
             <p>Alares Architects and Engineers provides comprehensive design and engineering services with expertise in healthcare, clean rooms, and sustainable building practices since 2007.</p>
-            <a href="#services" class="btn btn-white">Explore Our Services</a>
+            <a href="#services" class="btn btn-primary">Explore Our Services</a>
         </div>
     </section>
 
@@ -622,8 +606,8 @@
                 </div>
                 <div class="mission-content">
                     <h2>Our Mission</h2>
-                    <p>Since <span class="highlight">2007</span>, Alares has been providing design services to our clients. Our team of Architects and Engineers shares a genuine and collective drive to find the best solutions to the projects our clients need to get done.</p>
-                    <p>Our approach to challenges is often a direct reflection of our company's founder, <span class="highlight">Don Maggioli</span>. As a graduate of West Point and a former officer of the elite Green Berets, Don began the company based on the strong leadership training and high standards he gained from his earlier experiences.</p>
+                    <p>Since <strong>2007</strong>, Alares has been providing design services to our clients. Our team of Architects and Engineers shares a genuine and collective drive to find the best solutions to the projects our clients need to get done.</p>
+                    <p>Our approach to challenges is often a direct reflection of our company's founder, <strong>Don Maggioli</strong>. As a graduate of West Point and a former officer of the elite Green Berets, Don began the company based on the strong leadership training and high standards he gained from his earlier experiences.</p>
                     <p>Today, this commitment to excellence and a military "can-do" attitude guide how we tackle challenges – with the energy to complete the best job possible and to always leave the world a better place than when we found it.</p>
                 </div>
             </div>
@@ -633,14 +617,14 @@
     <!-- Name Origin -->
     <section class="name-origin">
         <div class="container">
-            <h2 class="section-title">What Does Alares Mean?</h2>
-            <p class="section-subtitle">The story behind our name</p>
+            <div class="section-header">
+                <h2 class="section-title">What Does Alares Mean?</h2>
+                <p class="section-subtitle">The story behind our name</p>
+            </div>
             <div class="name-content">
                 <p>We are often asked, <em>"Why the name Alares?"</em> or <em>"What does Alares mean?"</em></p>
                 <p>The name Alares has significant meaning for our organization. <em>Alares</em> were a kind of militia among the Romans, so called from <em>ala</em> – or Latin for <em>"wing"</em> – because of their lightness and swiftness in combat.</p>
-                <div class="name-quote">
-                    "The name Alares was selected because our philosophy is based on our goal to always achieve our clients' objectives in a swift manner, without sacrificing quality for speed."
-                </div>
+                <p>The name Alares was selected because our philosophy is based on our goal to always achieve our clients' objectives in a <em>swift manner</em>, without sacrificing quality for speed.</p>
             </div>
         </div>
     </section>
@@ -665,11 +649,13 @@
         </div>
     </section>
 
-    <!-- Services Overview -->
+    <!-- Services -->
     <section class="services" id="services">
         <div class="container">
-            <h2 class="section-title">Our Services</h2>
-            <p class="section-subtitle">Comprehensive design and engineering solutions for complex projects</p>
+            <div class="section-header">
+                <h2 class="section-title">Our Services</h2>
+                <p class="section-subtitle">Comprehensive design and engineering solutions for complex projects</p>
+            </div>
             <div class="services-grid">
                 <div class="service-card">
                     <div class="service-icon">
@@ -703,7 +689,7 @@
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
                             <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                            <path d="M14 2v6h6"/>
                         </svg>
                     </div>
                     <h3>Construction Management</h3>
@@ -721,9 +707,9 @@
                 <div class="service-card">
                     <div class="service-icon">
                         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
-                            <path d="M2 17l10 5 10-5"/>
-                            <path d="M2 12l10 5 10-5"/>
+                            <circle cx="12" cy="12" r="10"/>
+                            <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
+                            <path d="M2 12h20"/>
                         </svg>
                     </div>
                     <h3>Sustainability</h3>
@@ -749,7 +735,6 @@
                         <li>Clean room environments</li>
                         <li>Commercial & residential projects</li>
                         <li>Interior design services</li>
-                        <li>Green building practices</li>
                     </ul>
                 </div>
             </div>
@@ -784,7 +769,7 @@
         <div class="container">
             <div class="featured-grid">
                 <div class="featured-image">
-                    <img src="projects/home/other/12.bin" alt="Commissioning Services">
+                    <img src="projects/home/other/28.bin" alt="Commissioning Services">
                 </div>
                 <div class="featured-content">
                     <h3>Commissioning Services</h3>
@@ -796,37 +781,39 @@
         </div>
     </section>
 
-    <!-- Environmental & Sustainability -->
-    <section class="featured-service">
+    <!-- Project Gallery -->
+    <section class="gallery" id="gallery">
         <div class="container">
-            <div class="featured-grid reverse">
-                <div class="featured-image">
-                    <img src="projects/home/other/28.bin" alt="Environmental Services">
-                </div>
-                <div class="featured-content">
-                    <h3>Environmental & Sustainability</h3>
-                    <p>We are committed to using sustainable building practices that minimize the environmental impact of our projects. From energy-efficient materials to solar panels, we help you create spaces that are both beautiful and eco-friendly.</p>
-                    <p>Our approach integrates environmental responsibility with practical design solutions, ensuring your project meets both sustainability goals and operational requirements.</p>
-                    <ul class="feature-list">
-                        <li>Energy-efficient design</li>
-                        <li>Sustainable materials selection</li>
-                        <li>Solar panel integration</li>
-                        <li>Environmental impact assessment</li>
-                        <li>Green building certifications</li>
-                    </ul>
-                </div>
+            <div class="section-header">
+                <h2 class="section-title">Project Gallery</h2>
+                <p class="section-subtitle">A selection of our recent work</p>
+            </div>
+            <div class="gallery-grid">
+                <div class="gallery-item"><img src="projects/home/other/14.bin" alt="Project 1"></div>
+                <div class="gallery-item"><img src="projects/home/other/15.bin" alt="Project 2"></div>
+                <div class="gallery-item"><img src="projects/home/other/16.bin" alt="Project 3"></div>
+                <div class="gallery-item"><img src="projects/home/other/17.bin" alt="Project 4"></div>
+                <div class="gallery-item"><img src="projects/home/other/18.bin" alt="Project 5"></div>
+                <div class="gallery-item"><img src="projects/home/other/19.bin" alt="Project 6"></div>
+                <div class="gallery-item"><img src="projects/home/other/20.bin" alt="Project 7"></div>
+                <div class="gallery-item"><img src="projects/home/other/21.bin" alt="Project 8"></div>
             </div>
         </div>
     </section>
 
-    <!-- Case Studies -->
-    <section class="case-studies" id="case-studies" style="background: var(--bg-light);">
+    <!-- Environmental -->
+    <section class="featured-service">
         <div class="container">
-            <h2 class="section-title">Case Studies</h2>
-            <p class="section-subtitle">Explore our portfolio of successful projects</p>
-            <div style="text-align: center; padding: 60px 0;">
-                <a href="case-studies/index.html" class="btn btn-primary" style="margin: 0 10px;">View All Case Studies</a>
-                <a href="projects/index.html" style="margin: 0 10px; color: var(--primary); text-decoration: none; font-weight: 600;">Browse Project Gallery →</a>
+            <div class="featured-grid reverse">
+                <div class="featured-image">
+                    <img src="projects/environmental/other/1.bin" alt="Environmental Services">
+                </div>
+                <div class="featured-content">
+                    <h3>Environmental Services</h3>
+                    <p>At Alares, we offer a comprehensive suite of <strong>Environmental Services</strong> designed to address the complex challenges of site development, compliance, and sustainability.</p>
+                    <p>Our expertise ensures that projects comply with federal preservation requirements while meeting development goals.</p>
+                    <p>Partner with Alares for comprehensive environmental services that prioritize safety, compliance, and sustainability. Our integrated approach ensures that your projects are executed responsibly and in accordance with all applicable regulations.</p>
+                </div>
             </div>
         </div>
     </section>
@@ -854,8 +841,7 @@
                     <ul class="footer-links">
                         <li><a href="#mission">Our Mission</a></li>
                         <li><a href="case-studies/index.html">Case Studies</a></li>
-                        <li><a href="projects/index.html">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="#gallery">Projects</a></li>
                     </ul>
                 </div>
                 <div>
@@ -869,7 +855,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                © 2007-2025 Alares Architects and Engineers. All rights reserved.
+                Copyright © 2025 Alares Architects and Engineers - All Rights Reserved.
             </div>
         </div>
     </footer>
