@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Alares Architects and Engineers</title>
+    <title>Alares — Architecture & Engineering</title>
     <meta name="description" content="Great experiences build great results. Architecture, MEP, Structural, Commissioning services since 2007.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -18,13 +18,13 @@
         :root {
             --bg: #ffffff;
             --bg-secondary: #f5f5f7;
-            --bg-tertiary: #fafafa;
+            --bg-dark: #1d1d1f;
             --text: #1d1d1f;
             --text-secondary: #86868b;
+            --text-light: #f5f5f7;
             --blue: #0071e3;
             --blue-hover: #0077ed;
-            --gray: #f5f5f7;
-            --border: #d2d2d7;
+            --gray: #d2d2d7;
         }
 
         html {
@@ -32,17 +32,19 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.47059;
             font-weight: 400;
             letter-spacing: -0.022em;
             -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden;
         }
 
-        /* Navigation */
-        nav {
+        /* Navigation - Apple Style */
+        .globalnav {
             position: fixed;
             top: 0;
             left: 0;
@@ -50,15 +52,42 @@
             height: 52px;
             background: rgba(255, 255, 255, 0.72);
             backdrop-filter: saturate(180%) blur(20px);
+            -webkit-backdrop-filter: saturate(180%) blur(20px);
             border-bottom: 1px solid rgba(0, 0, 0, 0.08);
             z-index: 9999;
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 40px;
         }
 
-        nav a {
+        .globalnav-content {
+            display: flex;
+            align-items: center;
+            gap: 44px;
+            padding: 0 22px;
+            max-width: 1024px;
+            width: 100%;
+        }
+
+        .globalnav-logo {
+            font-size: 21px;
+            font-weight: 600;
+            color: var(--text);
+            opacity: 0.92;
+            letter-spacing: -0.5px;
+        }
+
+        .globalnav-logo:hover {
+            opacity: 1;
+        }
+
+        .globalnav-links {
+            display: flex;
+            gap: 44px;
+            margin-left: auto;
+        }
+
+        .globalnav-links a {
             font-size: 12px;
             font-weight: 400;
             color: var(--text);
@@ -67,96 +96,118 @@
             letter-spacing: -0.01em;
         }
 
-        nav a:hover {
+        .globalnav-links a:hover {
             opacity: 1;
         }
 
-        .nav-logo {
-            font-weight: 600;
-            font-size: 16px;
-            opacity: 1;
-        }
-
-        .menu-toggle {
+        .globalnav-menu {
             display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 8px;
         }
 
-        /* Hero */
+        /* Main Content */
+        main {
+            padding-top: 52px;
+        }
+
+        /* Hero - Apple Style */
         .hero {
-            min-height: 100vh;
+            min-height: calc(100vh - 52px);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
             text-align: center;
-            padding: 120px 20px 60px;
+            padding: 80px 20px 0;
+            position: relative;
+            overflow: hidden;
             background: var(--bg);
         }
 
-        .hero-pretitle {
-            font-size: 21px;
-            font-weight: 400;
-            color: var(--text-secondary);
-            margin-bottom: 8px;
+        .hero-content {
+            max-width: 980px;
+            margin: 0 auto;
+            z-index: 2;
         }
 
-        .hero h1 {
-            font-size: clamp(48px, 10vw, 96px);
+        .hero-headline {
+            font-size: clamp(48px, 8vw, 96px);
             font-weight: 700;
             letter-spacing: -0.015em;
             line-height: 1.05;
-            margin-bottom: 20px;
+            margin-bottom: 16px;
             background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            background-clip: text;
         }
 
-        .hero-subtitle {
+        .hero-subhead {
             font-size: 28px;
             font-weight: 400;
             color: var(--text-secondary);
-            margin-bottom: 40px;
             max-width: 600px;
+            margin: 0 auto 32px;
             line-height: 1.3;
+            letter-spacing: -0.021em;
         }
 
-        .hero-cta {
+        .hero-cta-group {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .button {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: var(--blue);
-            color: white;
+            justify-content: center;
             font-size: 17px;
             font-weight: 400;
             padding: 12px 24px;
             border-radius: 980px;
-            transition: all 0.3s;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            cursor: pointer;
+            border: none;
+            min-width: 140px;
         }
 
-        .hero-cta:hover {
+        .button-primary {
+            background: var(--blue);
+            color: white;
+        }
+
+        .button-primary:hover {
             background: var(--blue-hover);
         }
 
-        .hero-link {
-            margin-top: 20px;
-            font-size: 21px;
+        .button-secondary {
+            background: transparent;
             color: var(--blue);
-            display: flex;
-            align-items: center;
-            gap: 6px;
+            font-size: 21px;
+            padding: 0;
+            min-width: auto;
         }
 
-        .hero-link:hover {
+        .button-secondary:hover {
             text-decoration: underline;
+        }
+
+        .hero-image-container {
+            width: 100%;
+            max-width: 1200px;
+            margin-top: 80px;
+            position: relative;
         }
 
         .hero-image {
             width: 100%;
-            max-width: 1200px;
-            margin-top: 80px;
             border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 50px 100px -20px rgba(0,0,0,0.15);
+            box-shadow: 0 32px 64px -12px rgba(0,0,0,0.14);
         }
 
         .hero-image img {
@@ -166,161 +217,54 @@
         }
 
         /* Section Base */
-        section {
-            padding: 120px 20px;
+        .section {
+            padding: 160px 20px;
+        }
+
+        .section-dark {
+            background: var(--bg-dark);
+            color: var(--text-light);
+        }
+
+        .section-content {
+            max-width: 980px;
+            margin: 0 auto;
+        }
+
+        .section-label {
+            font-size: 17px;
+            font-weight: 400;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+        }
+
+        .section-dark .section-label {
+            color: var(--gray);
+            opacity: 0.8;
         }
 
         .section-headline {
-            text-align: center;
-            max-width: 800px;
-            margin: 0 auto 80px;
-        }
-
-        .section-headline h2 {
             font-size: clamp(40px, 6vw, 64px);
             font-weight: 700;
             letter-spacing: -0.015em;
-            margin-bottom: 20px;
+            line-height: 1.1;
+            margin-bottom: 24px;
         }
 
-        .section-headline p {
+        .section-subhead {
             font-size: 21px;
             color: var(--text-secondary);
+            max-width: 680px;
             line-height: 1.4;
         }
 
-        /* Stats */
-        .stats {
-            background: var(--bg-secondary);
-            padding: 80px 20px;
+        .section-dark .section-subhead {
+            color: var(--text-light);
+            opacity: 0.8;
         }
 
-        .stats-grid {
-            display: flex;
-            justify-content: center;
-            gap: 80px;
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .stat {
-            text-align: center;
-        }
-
-        .stat-number {
-            font-size: 56px;
-            font-weight: 700;
-            color: var(--text);
-            letter-spacing: -0.02em;
-            line-height: 1;
-            margin-bottom: 8px;
-        }
-
-        .stat-label {
-            font-size: 15px;
-            color: var(--text-secondary);
-        }
-
-        /* About */
-        .about {
-            background: var(--bg);
-        }
-
-        .about-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 100px;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .about-image {
-            border-radius: 24px;
-            overflow: hidden;
-        }
-
-        .about-image img {
-            width: 100%;
-            height: auto;
-        }
-
-        .about-content h3 {
-            font-size: 28px;
-            font-weight: 600;
-            margin-bottom: 20px;
-            color: var(--text);
-        }
-
-        .about-content p {
-            font-size: 19px;
-            color: var(--text-secondary);
-            margin-bottom: 20px;
-            line-height: 1.5;
-        }
-
-        .about-content strong {
-            color: var(--text);
-            font-weight: 600;
-        }
-
-        /* Services */
-        .services {
-            background: var(--bg-secondary);
-        }
-
-        .services-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .service-card {
-            background: var(--bg);
-            border-radius: 24px;
-            padding: 48px 32px;
-            text-align: center;
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-
-        .service-card:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
-        }
-
-        .service-icon {
-            width: 64px;
-            height: 64px;
-            background: var(--bg-secondary);
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            color: var(--blue);
-        }
-
-        .service-icon svg {
-            width: 28px;
-            height: 28px;
-        }
-
-        .service-card h3 {
-            font-size: 21px;
-            font-weight: 600;
-            margin-bottom: 12px;
-        }
-
-        .service-card p {
-            font-size: 15px;
-            color: var(--text-secondary);
-            line-height: 1.4;
-        }
-
-        /* Work */
-        .work-grid {
+        /* Grid Layouts - Apple Style */
+        .grid-2 {
             display: grid;
             grid-template-columns: repeat(2, 1fr);
             gap: 24px;
@@ -328,396 +272,563 @@
             margin: 0 auto;
         }
 
-        .work-card {
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        /* Cards - Apple Style */
+        .card {
             background: var(--bg-secondary);
             border-radius: 24px;
             overflow: hidden;
-            transition: transform 0.3s;
+            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
         }
 
-        .work-card:hover {
+        .card:hover {
             transform: scale(1.02);
         }
 
-        .work-card img {
+        .card-image {
             width: 100%;
             aspect-ratio: 16/10;
+            overflow: hidden;
+        }
+
+        .card-image img {
+            width: 100%;
+            height: 100%;
             object-fit: cover;
         }
 
-        .work-card-content {
-            padding: 32px;
+        .card-content {
+            padding: 40px 32px;
         }
 
-        .work-card h3 {
-            font-size: 21px;
+        .card-title {
+            font-size: 24px;
             font-weight: 600;
             margin-bottom: 8px;
+            letter-spacing: -0.021em;
         }
 
-        .work-card p {
-            font-size: 15px;
+        .card-description {
+            font-size: 17px;
             color: var(--text-secondary);
+            line-height: 1.4;
         }
 
-        /* Contact */
-        .contact {
-            background: var(--bg);
+        /* Feature Card - Large */
+        .feature-card {
+            background: var(--bg-secondary);
+            border-radius: 28px;
+            padding: 80px 60px;
             text-align: center;
         }
 
-        .contact-grid {
+        .feature-card-dark {
+            background: #000;
+            color: white;
+        }
+
+        .feature-icon {
+            width: 56px;
+            height: 56px;
+            background: var(--blue);
+            border-radius: 16px;
             display: flex;
+            align-items: center;
             justify-content: center;
+            margin: 0 auto 24px;
+            color: white;
+        }
+
+        .feature-icon svg {
+            width: 28px;
+            height: 28px;
+        }
+
+        /* Stats */
+        .stats-section {
+            background: var(--bg-secondary);
+            padding: 100px 20px;
+        }
+
+        .stats-container {
+            max-width: 980px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
             gap: 60px;
-            margin-top: 60px;
-            flex-wrap: wrap;
         }
 
-        .contact-item {
+        .stat-item {
             text-align: center;
+            flex: 1;
         }
 
-        .contact-item h4 {
-            font-size: 13px;
-            font-weight: 600;
+        .stat-value {
+            font-size: 64px;
+            font-weight: 700;
+            letter-spacing: -0.021em;
+            line-height: 1;
+            margin-bottom: 8px;
+            background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .stat-label {
+            font-size: 17px;
             color: var(--text-secondary);
+            font-weight: 400;
+        }
+
+        /* Bento Grid - Apple Style */
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .bento-item {
+            background: var(--bg-secondary);
+            border-radius: 28px;
+            padding: 60px 50px;
+            min-height: 500px;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .bento-item-large {
+            grid-column: span 2;
+            min-height: 600px;
+        }
+
+        .bento-item-dark {
+            background: var(--bg-dark);
+            color: white;
+        }
+
+        .bento-eyebrow {
+            font-size: 12px;
+            font-weight: 600;
             text-transform: uppercase;
-            letter-spacing: 0.05em;
+            letter-spacing: 0.1em;
+            color: var(--orange);
             margin-bottom: 12px;
         }
 
-        .contact-item p {
+        .bento-headline {
+            font-size: 40px;
+            font-weight: 700;
+            letter-spacing: -0.021em;
+            margin-bottom: 16px;
+            max-width: 400px;
+        }
+
+        .bento-description {
             font-size: 19px;
-            color: var(--text);
+            color: var(--text-secondary);
+            max-width: 360px;
+            line-height: 1.4;
         }
 
-        .contact-item a {
-            color: var(--blue);
+        .bento-item-dark .bento-description {
+            color: rgba(255,255,255,0.7);
         }
 
-        .contact-item a:hover {
-            text-decoration: underline;
+        .bento-image {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 60%;
+        }
+
+        .bento-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         /* Footer */
-        footer {
+        .globalfooter {
             background: var(--bg-secondary);
             padding: 40px 20px;
-            text-align: center;
+            border-top: 1px solid var(--gray);
         }
 
-        footer p {
+        .globalfooter-content {
+            max-width: 980px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .globalfooter p {
             font-size: 12px;
             color: var(--text-secondary);
         }
 
+        .globalfooter-links {
+            display: flex;
+            gap: 24px;
+        }
+
+        .globalfooter-links a {
+            font-size: 12px;
+            color: var(--text-secondary);
+        }
+
+        .globalfooter-links a:hover {
+            text-decoration: underline;
+        }
+
         /* Mobile Menu */
-        .mobile-nav {
+        .mobile-menu-overlay {
             display: none;
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(255,255,255,0.98);
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(20px);
             z-index: 10000;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 32px;
+            gap: 40px;
         }
 
-        .mobile-nav.active {
+        .mobile-menu-overlay.active {
             display: flex;
         }
 
-        .mobile-nav a {
+        .mobile-menu-overlay a {
             font-size: 28px;
             font-weight: 600;
             color: var(--text);
         }
 
-        .mobile-nav-close {
+        .mobile-menu-close {
             position: absolute;
-            top: 20px;
+            top: 14px;
             right: 20px;
             background: none;
             border: none;
             font-size: 32px;
             cursor: pointer;
+            color: var(--text);
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
-            nav {
-                justify-content: space-between;
-                padding: 0 20px;
-            }
-            
-            nav a:not(.nav-logo) {
+        @media (max-width: 1068px) {
+            .globalnav-links {
                 display: none;
             }
             
-            .menu-toggle {
+            .globalnav-menu {
                 display: block;
-                background: none;
-                border: none;
-                font-size: 24px;
-                cursor: pointer;
+                margin-left: auto;
             }
             
-            .about-grid {
+            .globalnav-content {
+                justify-content: space-between;
+            }
+
+            .grid-2, .grid-3 {
                 grid-template-columns: 1fr;
-                gap: 60px;
             }
-            
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
+
+            .bento-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .bento-item-large {
+                grid-column: span 1;
+            }
+
+            .stats-container {
+                flex-direction: column;
+                gap: 40px;
+            }
+
+            .section {
+                padding: 100px 20px;
             }
         }
 
         @media (max-width: 768px) {
-            .hero h1 {
-                font-size: 42px;
+            .hero-headline {
+                font-size: 40px;
             }
-            
-            .hero-subtitle {
+
+            .hero-subhead {
                 font-size: 21px;
             }
-            
+
             .hero-image {
                 border-radius: 18px;
-                margin-top: 60px;
             }
-            
-            section {
-                padding: 80px 20px;
+
+            .bento-item {
+                padding: 40px 30px;
+                min-height: 400px;
             }
-            
-            .stats-grid {
+
+            .bento-headline {
+                font-size: 32px;
+            }
+
+            .stat-value {
+                font-size: 48px;
+            }
+
+            .globalfooter-content {
                 flex-direction: column;
-                gap: 40px;
+                text-align: center;
             }
-            
-            .stat-number {
-                font-size: 42px;
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
             }
-            
-            .services-grid {
-                grid-template-columns: 1fr;
+            to {
+                opacity: 1;
+                transform: translateY(0);
             }
-            
-            .work-grid {
-                grid-template-columns: 1fr;
-            }
-            
-            .contact-grid {
-                flex-direction: column;
-                gap: 40px;
-            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
     </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <a href="#" class="nav-logo">Alares</a>
-        <a href="#about">About</a>
-        <a href="#services">Services</a>
-        <a href="#work">Work</a>
-        <a href="#contact">Contact</a>
-        <button class="menu-toggle" onclick="document.querySelector('.mobile-nav').classList.add('active')">☰</button>
+    <!-- Global Navigation -->
+    <nav class="globalnav">
+        <div class="globalnav-content">
+            <a href="#" class="globalnav-logo">Alares</a>
+            <div class="globalnav-links">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#work">Work</a>
+                <a href="#contact">Contact</a>
+            </div>
+            <button class="globalnav-menu" onclick="document.querySelector('.mobile-menu-overlay').classList.add('active')">
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12h18M3 6h18M3 18h18"/>
+                </svg>
+            </button>
+        </div>
     </nav>
 
-    <!-- Mobile Nav -->
-    <div class="mobile-nav">
-        <button class="mobile-nav-close" onclick="document.querySelector('.mobile-nav').classList.remove('active')">×</button>
-        <a href="#about" onclick="document.querySelector('.mobile-nav').classList.remove('active')">About</a>
-        <a href="#services" onclick="document.querySelector('.mobile-nav').classList.remove('active')">Services</a>
-        <a href="#work" onclick="document.querySelector('.mobile-nav').classList.remove('active')">Work</a>
-        <a href="#contact" onclick="document.querySelector('.mobile-nav').classList.remove('active')">Contact</a>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu-overlay" onclick="if(event.target === this) this.classList.remove('active')">
+        <button class="mobile-menu-close" onclick="document.querySelector('.mobile-menu-overlay').classList.remove('active')">×</button>
+        <a href="#about" onclick="document.querySelector('.mobile-menu-overlay').classList.remove('active')">About</a>
+        <a href="#services" onclick="document.querySelector('.mobile-menu-overlay').classList.remove('active')">Services</a>
+        <a href="#work" onclick="document.querySelector('.mobile-menu-overlay').classList.remove('active')">Work</a>
+        <a href="#contact" onclick="document.querySelector('.mobile-menu-overlay').classList.remove('active')">Contact</a>
     </div>
 
-    <!-- Hero -->
-    <section class="hero">
-        <p class="hero-pretitle">Architecture & Engineering</p>
-        <h1>Great experiences build great results</h1>
-        <p class="hero-subtitle">Comprehensive design and engineering services with expertise in healthcare, clean rooms, and sustainable building practices.</p>
-        <a href="#services" class="hero-cta">Explore Services</a>
-        <a href="#contact" class="hero-link">Contact us →</a>
-        <div class="hero-image">
-            <img src="projects/home/other/3.bin" alt="Alares Architecture">
-        </div>
-    </section>
+    <main>
+        <!-- Hero -->
+        <section class="hero">
+            <div class="hero-content">
+                <h1 class="hero-headline">Great experiences build great results.</h1>
+                <p class="hero-subhead">Architecture and engineering services for healthcare, clean rooms, and sustainable buildings since 2007.</p>
+                <div class="hero-cta-group">
+                    <a href="#services" class="button button-primary">Explore Services</a>
+                    <a href="#contact" class="button button-secondary">Contact us →</a>
+                </div>
+            </div>
+            <div class="hero-image-container">
+                <div class="hero-image">
+                    <img src="projects/home/other/3.bin" alt="Alares Architecture">
+                </div>
+            </div>
+        </section>
 
-    <!-- Stats -->
-    <section class="stats">
-        <div class="stats-grid">
-            <div class="stat">
-                <div class="stat-number">50M+</div>
-                <div class="stat-label">Square Feet Commissioned</div>
+        <!-- Stats -->
+        <section class="stats-section">
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-value">50M+</div>
+                    <div class="stat-label">Square Feet Commissioned</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">80M+</div>
+                    <div class="stat-label">Square Feet Retro Commissioned</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">17+</div>
+                    <div class="stat-label">Years of Excellence</div>
+                </div>
             </div>
-            <div class="stat">
-                <div class="stat-number">80M+</div>
-                <div class="stat-label">Square Feet Retro Commissioned</div>
-            </div>
-            <div class="stat">
-                <div class="stat-number">17+</div>
-                <div class="stat-label">Years of Excellence</div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- About -->
-    <section class="about" id="about">
-        <div class="section-headline">
-            <h2>Our Story</h2>
-            <p>Building excellence since 2007</p>
-        </div>
-        <div class="about-grid">
-            <div class="about-image">
-                <img src="projects/home/other/4.bin" alt="Alares Team">
+        <!-- About -->
+        <section class="section" id="about">
+            <div class="section-content" style="text-align: center;">
+                <p class="section-label">Our Story</p>
+                <h2 class="section-headline">Engineering excellence, built on integrity.</h2>
+                <p class="section-subhead">Founded by West Point graduate and Green Beret officer Don Maggioli, Alares brings military precision and leadership to every project.</p>
             </div>
-            <div class="about-content">
-                <h3>A Legacy of Excellence</h3>
-                <p>Since <strong>2007</strong>, Alares has been providing design services to clients across the nation. Our team of Architects and Engineers shares a genuine drive to find the best solutions for every project.</p>
-                <p>Our approach reflects the leadership of our founder, <strong>Don Maggioli</strong> — a West Point graduate and former Green Beret officer. This military "can-do" attitude guides how we tackle challenges.</p>
-                <p>The name <strong>Alares</strong> comes from the Roman militia, known for their swiftness in combat. We achieve our clients' objectives swiftly, without sacrificing quality for speed.</p>
+            <div class="grid-2" style="margin-top: 80px;">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="projects/home/other/4.bin" alt="Alares Team">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Our Mission</h3>
+                        <p class="card-description">To deliver exceptional design and engineering solutions that enhance patient care, improve efficiency, and stand the test of time.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-content" style="padding: 60px 40px;">
+                        <p class="section-label" style="margin-bottom: 20px;">The Alares Name</p>
+                        <h3 style="font-size: 32px; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.021em;">Swiftness without sacrifice.</h3>
+                        <p style="font-size: 17px; color: var(--text-secondary); line-height: 1.5;">Alares were a Roman militia known for their lightness and swiftness in combat. We bring that same speed and precision to every project — achieving objectives swiftly without sacrificing quality.</p>
+                    </div>
+                </div>
             </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Services -->
-    <section class="services" id="services">
-        <div class="section-headline">
-            <h2>Our Services</h2>
-            <p>From concept to completion, we provide end-to-end solutions</p>
-        </div>
-        <div class="services-grid">
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-5a2 2 0 012-2h4a2 2 0 012 2v5"/>
-                    </svg>
-                </div>
-                <h3>Architecture</h3>
-                <p>Healthcare & clean room design with focus on safety, functionality, and aesthetic appeal.</p>
+        <!-- Services -->
+        <section class="section section-dark" id="services" style="padding: 120px 20px;">
+            <div class="section-content" style="text-align: center; margin-bottom: 80px;">
+                <p class="section-label">What We Do</p>
+                <h2 class="section-headline">Comprehensive services.<br>Exceptional results.</h2>
             </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                    </svg>
+            <div class="grid-3" style="max-width: 1100px;">
+                <div class="feature-card feature-card-dark">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-5a2 2 0 012-2h4a2 2 0 012 2v5"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 12px;">Architecture</h3>
+                    <p style="font-size: 17px; opacity: 0.8; line-height: 1.4;">Healthcare and clean room design with focus on safety, functionality, and aesthetic excellence.</p>
                 </div>
-                <h3>MEP Services</h3>
-                <p>Mechanical, Electrical, and Plumbing systems for modern healthcare facilities.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <rect x="4" y="4" width="16" height="16" rx="2"/>
-                        <path d="M4 12h16M12 4v16"/>
-                    </svg>
+                <div class="feature-card feature-card-dark">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 12px;">MEP Engineering</h3>
+                    <p style="font-size: 17px; opacity: 0.8; line-height: 1.4;">Mechanical, electrical, and plumbing systems designed for optimal performance.</p>
                 </div>
-                <h3>Structural</h3>
-                <p>Expert structural engineering ensuring safety and code compliance.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                        <path d="M14 2v6h6"/>
-                    </svg>
+                <div class="feature-card feature-card-dark">
+                    <div class="feature-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 12px;">Commissioning</h3>
+                    <p style="font-size: 17px; opacity: 0.8; line-height: 1.4;">Certified commissioning ensuring your systems function at peak performance.</p>
                 </div>
-                <h3>Construction Mgmt</h3>
-                <p>Owner's representative services ensuring on-time, on-budget delivery.</p>
             </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                    </svg>
-                </div>
-                <h3>Commissioning</h3>
-                <p>Certified commissioning for optimal building performance.</p>
-            </div>
-            <div class="service-card">
-                <div class="service-icon">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <circle cx="12" cy="12" r="10"/>
-                        <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-                    </svg>
-                </div>
-                <h3>Sustainability</h3>
-                <p>Green building practices and eco-friendly design solutions.</p>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Work -->
-    <section id="work">
-        <div class="section-headline">
-            <h2>Selected Projects</h2>
-            <p>A selection of our recent work</p>
-        </div>
-        <div class="work-grid">
-            <div class="work-card">
-                <img src="projects/home/other/14.bin" alt="Project">
-                <div class="work-card-content">
-                    <h3>Healthcare Facility</h3>
-                    <p>Architecture & MEP Design</p>
+        <!-- Work -->
+        <section class="section" id="work">
+            <div class="section-content" style="text-align: center; margin-bottom: 60px;">
+                <p class="section-label">Portfolio</p>
+                <h2 class="section-headline">Selected Projects</h2>
+            </div>
+            <div class="grid-2">
+                <div class="card">
+                    <div class="card-image">
+                        <img src="projects/home/other/14.bin" alt="Healthcare Facility">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Healthcare Facility Design</h3>
+                        <p class="card-description">Complete architecture and MEP design for modern healthcare environments.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="projects/home/other/15.bin" alt="Clean Room">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Clean Room Environments</h3>
+                        <p class="card-description">Specialized controlled environments for critical applications.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="projects/home/other/16.bin" alt="Campus Renovation">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Campus Modernization</h3>
+                        <p class="card-description">Large-scale commissioning and retrofit projects.</p>
+                    </div>
+                </div>
+                <div class="card">
+                    <div class="card-image">
+                        <img src="projects/home/other/17.bin" alt="Commercial Building">
+                    </div>
+                    <div class="card-content">
+                        <h3 class="card-title">Commercial Development</h3>
+                        <p class="card-description">Full-service design for commercial and institutional buildings.</p>
+                    </div>
                 </div>
             </div>
-            <div class="work-card">
-                <img src="projects/home/other/15.bin" alt="Project">
-                <div class="work-card-content">
-                    <h3>Clean Room Environment</h3>
-                    <p>Specialized Architecture</p>
-                </div>
-            </div>
-            <div class="work-card">
-                <img src="projects/home/other/16.bin" alt="Project">
-                <div class="work-card-content">
-                    <h3>Campus Renovation</h3>
-                    <p>Commissioning & Retrofit</p>
-                </div>
-            </div>
-            <div class="work-card">
-                <img src="projects/home/other/17.bin" alt="Project">
-                <div class="work-card-content">
-                    <h3>Commercial Building</h3>
-                    <p>Full Service Design</p>
-                </div>
-            </div>
-        </div>
-    </section>
+        </section>
 
-    <!-- Contact -->
-    <section class="contact" id="contact">
-        <div class="section-headline">
-            <h2>Let's work together</h2>
-            <p>Ready to start your next project? Get in touch.</p>
-        </div>
-        <div class="contact-grid">
-            <div class="contact-item">
-                <h4>Email</h4>
-                <p><a href="mailto:info@alaresllc.com">info@alaresllc.com</a></p>
+        <!-- Contact -->
+        <section class="section section-dark" id="contact">
+            <div class="section-content" style="text-align: center;">
+                <p class="section-label">Get in Touch</p>
+                <h2 class="section-headline">Let's build something great together.</h2>
+                <p class="section-subhead" style="margin-bottom: 48px;">Ready to start your next project? We'd love to hear from you.</p>
+                <a href="mailto:info@alaresllc.com" class="button button-primary" style="font-size: 17px; padding: 14px 32px;">Contact Us</a>
+                <div style="margin-top: 60px; display: flex; justify-content: center; gap: 80px; flex-wrap: wrap;">
+                    <div style="text-align: center;">
+                        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-bottom: 8px;">Email</p>
+                        <p style="font-size: 17px;">info@alaresllc.com</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-bottom: 8px;">Phone</p>
+                        <p style="font-size: 17px;">(540) 479-9924</p>
+                    </div>
+                    <div style="text-align: center;">
+                        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-bottom: 8px;">Location</p>
+                        <p style="font-size: 17px;">Culpeper, VA</p>
+                    </div>
+                </div>
             </div>
-            <div class="contact-item">
-                <h4>Phone</h4>
-                <p>(540) 479-9924</p>
-            </div>
-            <div class="contact-item">
-                <h4>Address</h4>
-                <p>427 Southgate Ave, Suite 101<br>Culpeper, VA 22701</p>
-            </div>
-        </div>
-    </section>
+        </section>
+    </main>
 
     <!-- Footer -->
-    <footer>
-        <p>© 2025 Alares Architects and Engineers. All rights reserved.</p>
+    <footer class="globalfooter">
+        <div class="globalfooter-content">
+            <p>© 2025 Alares Architects and Engineers. All rights reserved.</p>
+            <div class="globalfooter-links">
+                <a href="#about">About</a>
+                <a href="#services">Services</a>
+                <a href="#work">Work</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
     </footer>
 </body>
 </html>
