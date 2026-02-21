@@ -7,7 +7,7 @@
     <meta name="description" content="Great experiences build great results. Architecture, MEP, Structural, Commissioning services since 2007.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -16,15 +16,16 @@
         }
 
         :root {
-            --bg: #ffffff;
-            --bg-secondary: #f5f5f7;
-            --bg-dark: #1d1d1f;
-            --text: #1d1d1f;
-            --text-secondary: #86868b;
-            --text-light: #f5f5f7;
-            --blue: #0071e3;
-            --blue-hover: #0077ed;
-            --gray: #d2d2d7;
+            --bg: #fafafa;
+            --bg-secondary: #f0f0f0;
+            --bg-dark: #1a1a1a;
+            --text: #111111;
+            --text-secondary: #666666;
+            --text-light: #ffffff;
+            --accent: #0066cc;
+            --accent-dark: #004499;
+            --border: #cccccc;
+            --grid: #e5e5e5;
         }
 
         html {
@@ -32,75 +33,120 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg);
             color: var(--text);
-            line-height: 1.47059;
+            line-height: 1.6;
             font-weight: 400;
-            letter-spacing: -0.022em;
             -webkit-font-smoothing: antialiased;
-            -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden;
         }
 
-        /* Navigation - Apple Style */
-        .globalnav {
+        /* No rounded corners - sharp engineering aesthetic */
+        * {
+            border-radius: 0 !important;
+        }
+
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            letter-spacing: -0.02em;
+            line-height: 1.1;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* Technical Grid Background */
+        .grid-bg {
+            background-image: 
+                linear-gradient(var(--grid) 1px, transparent 1px),
+                linear-gradient(90deg, var(--grid) 1px, transparent 1px);
+            background-size: 50px 50px;
+        }
+
+        /* Header */
+        header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
-            height: 52px;
-            background: rgba(255, 255, 255, 0.72);
-            backdrop-filter: saturate(180%) blur(20px);
-            -webkit-backdrop-filter: saturate(180%) blur(20px);
-            border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-            z-index: 9999;
+            height: 60px;
+            background: rgba(250, 250, 250, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
             display: flex;
             align-items: center;
-            justify-content: center;
+            padding: 0 48px;
         }
 
-        .globalnav-content {
+        .header-inner {
+            width: 100%;
+            max-width: 1400px;
+            margin: 0 auto;
             display: flex;
             align-items: center;
-            gap: 44px;
-            padding: 0 22px;
-            max-width: 1024px;
+            justify-content: space-between;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+            font-weight: 700;
+            font-size: 18px;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        .logo::before {
+            content: '//';
+            font-family: 'JetBrains Mono', monospace;
+            color: var(--accent);
+            font-weight: 500;
+        }
+
+        nav {
+            display: flex;
+            gap: 48px;
+        }
+
+        nav a {
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            position: relative;
+            padding: 4px 0;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        nav a:hover::after {
             width: 100%;
         }
 
-        .globalnav-logo {
-            font-size: 21px;
-            font-weight: 600;
-            color: var(--text);
-            opacity: 0.92;
-            letter-spacing: -0.5px;
-        }
-
-        .globalnav-logo:hover {
-            opacity: 1;
-        }
-
-        .globalnav-links {
-            display: flex;
-            gap: 44px;
-            margin-left: auto;
-        }
-
-        .globalnav-links a {
-            font-size: 12px;
-            font-weight: 400;
-            color: var(--text);
-            opacity: 0.8;
-            transition: opacity 0.3s;
-            letter-spacing: -0.01em;
-        }
-
-        .globalnav-links a:hover {
-            opacity: 1;
-        }
-
-        .globalnav-menu {
+        .menu-btn {
             display: none;
             background: none;
             border: none;
@@ -108,745 +154,725 @@
             padding: 8px;
         }
 
-        /* Main Content */
-        main {
-            padding-top: 52px;
-        }
-
-        /* Hero - Apple Style */
+        /* Hero */
         .hero {
-            min-height: calc(100vh - 52px);
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            text-align: center;
-            padding: 80px 20px 0;
+            padding: 120px 48px 80px;
             position: relative;
-            overflow: hidden;
-            background: var(--bg);
+            border-bottom: 1px solid var(--border);
+        }
+
+        .hero-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            width: 100%;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
         }
 
         .hero-content {
-            max-width: 980px;
-            margin: 0 auto;
-            z-index: 2;
-        }
-
-        .hero-headline {
-            font-size: clamp(48px, 8vw, 96px);
-            font-weight: 700;
-            letter-spacing: -0.015em;
-            line-height: 1.05;
-            margin-bottom: 16px;
-            background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .hero-subhead {
-            font-size: 28px;
-            font-weight: 400;
-            color: var(--text-secondary);
             max-width: 600px;
-            margin: 0 auto 32px;
-            line-height: 1.3;
-            letter-spacing: -0.021em;
         }
 
-        .hero-cta-group {
+        .hero-label {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 12px;
+            font-weight: 500;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            margin-bottom: 24px;
             display: flex;
-            flex-direction: column;
             align-items: center;
-            gap: 20px;
+            gap: 12px;
         }
 
-        .button {
+        .hero-label::before {
+            content: '';
+            width: 40px;
+            height: 1px;
+            background: var(--accent);
+        }
+
+        .hero h1 {
+            font-size: clamp(42px, 5vw, 72px);
+            font-weight: 700;
+            margin-bottom: 24px;
+            line-height: 1.05;
+        }
+
+        .hero h1 span {
+            color: var(--accent);
+        }
+
+        .hero p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-bottom: 40px;
+            line-height: 1.6;
+        }
+
+        .btn {
             display: inline-flex;
             align-items: center;
-            justify-content: center;
-            font-size: 17px;
-            font-weight: 400;
-            padding: 12px 24px;
-            border-radius: 980px;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            gap: 12px;
+            padding: 16px 32px;
+            font-size: 13px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 2px solid var(--text);
+            background: var(--text);
+            color: var(--bg);
             cursor: pointer;
-            border: none;
-            min-width: 140px;
+            transition: all 0.2s;
         }
 
-        .button-primary {
-            background: var(--blue);
-            color: white;
-        }
-
-        .button-primary:hover {
-            background: var(--blue-hover);
-        }
-
-        .button-secondary {
+        .btn:hover {
             background: transparent;
-            color: var(--blue);
-            font-size: 21px;
-            padding: 0;
-            min-width: auto;
+            color: var(--text);
         }
 
-        .button-secondary:hover {
-            text-decoration: underline;
+        .btn-outline {
+            background: transparent;
+            color: var(--text);
+            border-color: var(--border);
         }
 
-        .hero-image-container {
-            width: 100%;
-            max-width: 1200px;
-            margin-top: 80px;
-            position: relative;
+        .btn-outline:hover {
+            border-color: var(--text);
         }
 
         .hero-image {
-            width: 100%;
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: 0 32px 64px -12px rgba(0,0,0,0.14);
+            position: relative;
+            border: 1px solid var(--border);
+        }
+
+        .hero-image::before {
+            content: 'FIG. 01';
+            position: absolute;
+            top: -24px;
+            left: 0;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 10px;
+            color: var(--text-secondary);
+            letter-spacing: 0.1em;
         }
 
         .hero-image img {
             width: 100%;
-            height: auto;
-            display: block;
-        }
-
-        /* Section Base */
-        .section {
-            padding: 160px 20px;
-        }
-
-        .section-dark {
-            background: var(--bg-dark);
-            color: var(--text-light);
-        }
-
-        .section-content {
-            max-width: 980px;
-            margin: 0 auto;
-        }
-
-        .section-label {
-            font-size: 17px;
-            font-weight: 400;
-            color: var(--text-secondary);
-            margin-bottom: 16px;
-        }
-
-        .section-dark .section-label {
-            color: var(--gray);
-            opacity: 0.8;
-        }
-
-        .section-headline {
-            font-size: clamp(40px, 6vw, 64px);
-            font-weight: 700;
-            letter-spacing: -0.015em;
-            line-height: 1.1;
-            margin-bottom: 24px;
-        }
-
-        .section-subhead {
-            font-size: 21px;
-            color: var(--text-secondary);
-            max-width: 680px;
-            line-height: 1.4;
-        }
-
-        .section-dark .section-subhead {
-            color: var(--text-light);
-            opacity: 0.8;
-        }
-
-        /* Grid Layouts - Apple Style */
-        .grid-2 {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
-        }
-
-        /* Cards - Apple Style */
-        .card {
-            background: var(--bg-secondary);
-            border-radius: 24px;
-            overflow: hidden;
-            transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-
-        .card:hover {
-            transform: scale(1.02);
-        }
-
-        .card-image {
-            width: 100%;
-            aspect-ratio: 16/10;
-            overflow: hidden;
-        }
-
-        .card-image img {
-            width: 100%;
-            height: 100%;
+            aspect-ratio: 4/3;
             object-fit: cover;
         }
 
-        .card-content {
-            padding: 40px 32px;
-        }
-
-        .card-title {
-            font-size: 24px;
-            font-weight: 600;
-            margin-bottom: 8px;
-            letter-spacing: -0.021em;
-        }
-
-        .card-description {
-            font-size: 17px;
-            color: var(--text-secondary);
-            line-height: 1.4;
-        }
-
-        /* Feature Card - Large */
-        .feature-card {
-            background: var(--bg-secondary);
-            border-radius: 28px;
-            padding: 80px 60px;
-            text-align: center;
-        }
-
-        .feature-card-dark {
-            background: #000;
-            color: white;
-        }
-
-        .feature-icon {
-            width: 56px;
-            height: 56px;
-            background: var(--blue);
-            border-radius: 16px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin: 0 auto 24px;
-            color: white;
-        }
-
-        .feature-icon svg {
-            width: 28px;
-            height: 28px;
-        }
-
         /* Stats */
-        .stats-section {
-            background: var(--bg-secondary);
-            padding: 100px 20px;
+        .stats-bar {
+            margin-top: auto;
+            padding-top: 80px;
+            max-width: 1400px;
+            width: 100%;
+            margin-left: auto;
+            margin-right: auto;
         }
 
-        .stats-container {
-            max-width: 980px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            gap: 60px;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid var(--border);
         }
 
-        .stat-item {
+        .stat {
+            padding: 40px 32px;
             text-align: center;
-            flex: 1;
+            border-right: 1px solid var(--border);
         }
 
-        .stat-value {
-            font-size: 64px;
-            font-weight: 700;
-            letter-spacing: -0.021em;
-            line-height: 1;
+        .stat:last-child {
+            border-right: none;
+        }
+
+        .stat-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 48px;
+            font-weight: 500;
+            color: var(--text);
             margin-bottom: 8px;
-            background: linear-gradient(135deg, #1d1d1f 0%, #434344 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            letter-spacing: -0.02em;
         }
 
         .stat-label {
-            font-size: 17px;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
             color: var(--text-secondary);
-            font-weight: 400;
         }
 
-        /* Bento Grid - Apple Style */
-        .bento-grid {
+        /* Section */
+        section {
+            padding: 120px 48px;
+            border-bottom: 1px solid var(--border);
+        }
+
+        .section-header {
+            max-width: 1400px;
+            margin: 0 auto 80px;
             display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 24px;
-            max-width: 1200px;
-            margin: 0 auto;
+            grid-template-columns: 1fr 2fr;
+            gap: 80px;
+            align-items: start;
         }
 
-        .bento-item {
-            background: var(--bg-secondary);
-            border-radius: 28px;
-            padding: 60px 50px;
-            min-height: 500px;
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .bento-item-large {
-            grid-column: span 2;
-            min-height: 600px;
-        }
-
-        .bento-item-dark {
-            background: var(--bg-dark);
-            color: white;
-        }
-
-        .bento-eyebrow {
+        .section-label {
+            font-family: 'JetBrains Mono', monospace;
             font-size: 12px;
+            font-weight: 500;
+            color: var(--accent);
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(36px, 4vw, 56px);
+            line-height: 1.1;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        /* About */
+        .about-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1px;
+            background: var(--border);
+        }
+
+        .about-cell {
+            background: var(--bg);
+            padding: 60px;
+        }
+
+        .about-cell h3 {
+            font-size: 14px;
             font-weight: 600;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-            color: var(--orange);
-            margin-bottom: 12px;
-        }
-
-        .bento-headline {
-            font-size: 40px;
-            font-weight: 700;
-            letter-spacing: -0.021em;
-            margin-bottom: 16px;
-            max-width: 400px;
-        }
-
-        .bento-description {
-            font-size: 19px;
             color: var(--text-secondary);
-            max-width: 360px;
-            line-height: 1.4;
+            margin-bottom: 24px;
         }
 
-        .bento-item-dark .bento-description {
-            color: rgba(255,255,255,0.7);
+        .about-cell p {
+            font-size: 17px;
+            line-height: 1.7;
+            color: var(--text);
+            margin-bottom: 20px;
         }
 
-        .bento-image {
+        .about-cell strong {
+            font-weight: 600;
+        }
+
+        /* Services */
+        .services {
+            background: var(--bg-secondary);
+        }
+
+        .services-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .service-item {
+            background: var(--bg);
+            padding: 48px 40px;
+            position: relative;
+        }
+
+        .service-number {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            color: var(--accent);
+            margin-bottom: 24px;
+            letter-spacing: 0.1em;
+        }
+
+        .service-item h3 {
+            font-size: 20px;
+            font-weight: 600;
+            margin-bottom: 16px;
+        }
+
+        .service-item p {
+            font-size: 14px;
+            color: var(--text-secondary);
+            line-height: 1.6;
+        }
+
+        /* Work */
+        .work-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--border);
+            border: 1px solid var(--border);
+        }
+
+        .work-item {
+            position: relative;
+            background: var(--bg);
+            overflow: hidden;
+        }
+
+        .work-item img {
+            width: 100%;
+            aspect-ratio: 16/10;
+            object-fit: cover;
+            transition: transform 0.4s;
+        }
+
+        .work-item:hover img {
+            transform: scale(1.02);
+        }
+
+        .work-overlay {
             position: absolute;
             bottom: 0;
             left: 0;
             right: 0;
-            height: 60%;
+            padding: 32px;
+            background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+            color: white;
         }
 
-        .bento-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
+        .work-overlay h4 {
+            font-size: 14px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 4px;
+        }
+
+        .work-overlay p {
+            font-size: 12px;
+            opacity: 0.7;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        /* Contact */
+        .contact {
+            background: var(--bg-dark);
+            color: var(--text-light);
+            border-bottom: none;
+        }
+
+        .contact-grid {
+            max-width: 1400px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1px;
+            background: rgba(255,255,255,0.1);
+            border: 1px solid rgba(255,255,255,0.1);
+        }
+
+        .contact-item {
+            padding: 48px;
+            text-align: center;
+        }
+
+        .contact-item h4 {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            opacity: 0.5;
+            margin-bottom: 16px;
+        }
+
+        .contact-item p {
+            font-size: 16px;
+        }
+
+        .contact-item a {
+            color: var(--accent);
+        }
+
+        .contact-item a:hover {
+            text-decoration: underline;
         }
 
         /* Footer */
-        .globalfooter {
-            background: var(--bg-secondary);
-            padding: 40px 20px;
-            border-top: 1px solid var(--gray);
+        footer {
+            padding: 32px 48px;
+            background: var(--bg-dark);
+            color: var(--text-light);
+            border-top: 1px solid rgba(255,255,255,0.1);
         }
 
-        .globalfooter-content {
-            max-width: 980px;
+        .footer-inner {
+            max-width: 1400px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            flex-wrap: wrap;
-            gap: 20px;
         }
 
-        .globalfooter p {
+        .footer-left {
             font-size: 12px;
-            color: var(--text-secondary);
+            opacity: 0.5;
         }
 
-        .globalfooter-links {
+        .footer-right {
             display: flex;
-            gap: 24px;
+            gap: 32px;
         }
 
-        .globalfooter-links a {
+        .footer-right a {
             font-size: 12px;
-            color: var(--text-secondary);
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            opacity: 0.5;
+            transition: opacity 0.2s;
         }
 
-        .globalfooter-links a:hover {
-            text-decoration: underline;
+        .footer-right a:hover {
+            opacity: 1;
         }
 
         /* Mobile Menu */
-        .mobile-menu-overlay {
+        .mobile-menu {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             bottom: 0;
-            background: rgba(255,255,255,0.98);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            z-index: 10000;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            gap: 40px;
+            background: var(--bg);
+            z-index: 2000;
+            padding: 100px 48px;
             opacity: 0;
             visibility: hidden;
-            transition: opacity 0.3s ease, visibility 0.3s ease;
-            display: flex;
+            transition: all 0.3s;
         }
 
-        .mobile-menu-overlay.active {
+        .mobile-menu.active {
             opacity: 1;
             visibility: visible;
         }
 
-        .mobile-menu-overlay a {
-            font-size: 28px;
-            font-weight: 600;
-            color: var(--text);
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.3s ease 0.1s, transform 0.3s ease 0.1s;
-        }
-
-        .mobile-menu-overlay.active a {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .mobile-menu-overlay.active a:nth-child(2) { transition-delay: 0.15s; }
-        .mobile-menu-overlay.active a:nth-child(3) { transition-delay: 0.2s; }
-        .mobile-menu-overlay.active a:nth-child(4) { transition-delay: 0.25s; }
-        .mobile-menu-overlay.active a:nth-child(5) { transition-delay: 0.3s; }
-
         .mobile-menu-close {
             position: absolute;
-            top: 14px;
-            right: 20px;
+            top: 18px;
+            right: 48px;
             background: none;
             border: none;
-            font-size: 32px;
+            font-size: 24px;
             cursor: pointer;
             color: var(--text);
-            width: 44px;
-            height: 44px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10001;
+        }
+
+        .mobile-menu nav {
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .mobile-menu nav a {
+            font-size: 24px;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--border);
         }
 
         /* Responsive */
-        @media (max-width: 1068px) {
-            .globalnav-links {
+        @media (max-width: 1024px) {
+            header {
+                padding: 0 24px;
+            }
+
+            nav {
                 display: none;
             }
-            
-            .globalnav-menu {
+
+            .menu-btn {
                 display: block;
-                margin-left: auto;
-            }
-            
-            .globalnav-content {
-                justify-content: space-between;
             }
 
-            .grid-2, .grid-3 {
+            .hero {
+                padding: 100px 24px 60px;
+            }
+
+            .hero-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+
+            section {
+                padding: 80px 24px;
+            }
+
+            .section-header {
+                grid-template-columns: 1fr;
+                gap: 24px;
+            }
+
+            .stats-grid {
                 grid-template-columns: 1fr;
             }
 
-            .bento-grid {
+            .stat {
+                border-right: none;
+                border-bottom: 1px solid var(--border);
+            }
+
+            .stat:last-child {
+                border-bottom: none;
+            }
+
+            .about-grid {
                 grid-template-columns: 1fr;
             }
 
-            .bento-item-large {
-                grid-column: span 1;
+            .about-cell {
+                padding: 40px 24px;
             }
 
-            .stats-container {
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-inner {
                 flex-direction: column;
-                gap: 40px;
-            }
-
-            .section {
-                padding: 100px 20px;
-            }
-        }
-
-        @media (max-width: 768px) {
-            .hero-headline {
-                font-size: 40px;
-            }
-
-            .hero-subhead {
-                font-size: 21px;
-            }
-
-            .hero-image {
-                border-radius: 18px;
-            }
-
-            .bento-item {
-                padding: 40px 30px;
-                min-height: 400px;
-            }
-
-            .bento-headline {
-                font-size: 32px;
-            }
-
-            .stat-value {
-                font-size: 48px;
-            }
-
-            .globalfooter-content {
-                flex-direction: column;
+                gap: 24px;
                 text-align: center;
             }
-        }
-
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
-        }
-
-        .animate-in {
-            animation: fadeInUp 0.8s cubic-bezier(0.4, 0, 0.2, 1) forwards;
         }
     </style>
 </head>
 <body>
-    <!-- Global Navigation -->
-    <nav class="globalnav">
-        <div class="globalnav-content">
-            <a href="#" class="globalnav-logo">Alares</a>
-            <div class="globalnav-links">
+    <!-- Header -->
+    <header>
+        <div class="header-inner">
+            <a href="#" class="logo">Alares</a>
+            <nav>
                 <a href="#about">About</a>
                 <a href="#services">Services</a>
                 <a href="#work">Work</a>
                 <a href="#contact">Contact</a>
-            </div>
-            <button class="globalnav-menu" onclick="document.querySelector('.mobile-menu-overlay').classList.add('active')">
-                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            </nav>
+            <button class="menu-btn" onclick="document.querySelector('.mobile-menu').classList.add('active')">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M3 12h18M3 6h18M3 18h18"/>
                 </svg>
             </button>
         </div>
-    </nav>
+    </header>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu-overlay" onclick="if(event.target === this) this.classList.remove('active')">
-        <button class="mobile-menu-close" onclick="document.querySelector('.mobile-menu-overlay').classList.remove('active')">×</button>
-        <a href="#about" onclick="document.querySelector('.mobile-menu-overlay').classList.remove('active')">About</a>
-        <a href="#services" onclick="document.querySelector('.mobile-menu-overlay').classList.remove('active')">Services</a>
-        <a href="#work" onclick="document.querySelector('.mobile-menu-overlay').classList.remove('active')">Work</a>
-        <a href="#contact" onclick="document.querySelector('.mobile-menu-overlay').classList.remove('active')">Contact</a>
+    <div class="mobile-menu" onclick="if(event.target === this) this.classList.remove('active')">
+        <button class="mobile-menu-close" onclick="document.querySelector('.mobile-menu').classList.remove('active')">×</button>
+        <nav>
+            <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('active')">About</a>
+            <a href="#services" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Services</a>
+            <a href="#work" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Work</a>
+            <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Contact</a>
+        </nav>
     </div>
 
-    <main>
-        <!-- Hero -->
-        <section class="hero">
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-grid">
             <div class="hero-content">
-                <h1 class="hero-headline">Great experiences build great results.</h1>
-                <p class="hero-subhead">Architecture and engineering services for healthcare, clean rooms, and sustainable buildings since 2007.</p>
-                <div class="hero-cta-group">
-                    <a href="#services" class="button button-primary">Explore Services</a>
-                    <a href="#contact" class="button button-secondary">Contact us →</a>
-                </div>
+                <p class="hero-label">Architecture & Engineering</p>
+                <h1>Great experiences <span>build great results</span></h1>
+                <p>Comprehensive design and engineering services with expertise in healthcare, clean rooms, and sustainable building practices since 2007.</p>
+                <a href="#services" class="btn">Explore Services</a>
             </div>
-            <div class="hero-image-container">
-                <div class="hero-image">
-                    <img src="projects/home/other/3.bin" alt="Alares Architecture">
-                </div>
+            <div class="hero-image">
+                <img src="projects/home/other/3.bin" alt="Architecture">
             </div>
-        </section>
-
-        <!-- Stats -->
-        <section class="stats-section">
-            <div class="stats-container">
-                <div class="stat-item">
-                    <div class="stat-value">50M+</div>
+        </div>
+        <div class="stats-bar">
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">50M+</div>
                     <div class="stat-label">Square Feet Commissioned</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-value">80M+</div>
+                <div class="stat">
+                    <div class="stat-number">80M+</div>
                     <div class="stat-label">Square Feet Retro Commissioned</div>
                 </div>
-                <div class="stat-item">
-                    <div class="stat-value">17+</div>
+                <div class="stat">
+                    <div class="stat-number">17+</div>
                     <div class="stat-label">Years of Excellence</div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <!-- About -->
-        <section class="section" id="about">
-            <div class="section-content" style="text-align: center;">
+    <!-- About -->
+    <section id="about">
+        <div class="section-header">
+            <div>
                 <p class="section-label">Our Story</p>
-                <h2 class="section-headline">Engineering excellence, built on integrity.</h2>
-                <p class="section-subhead">Founded by West Point graduate and Green Beret officer Don Maggioli, Alares brings military precision and leadership to every project.</p>
+                <h2>Engineering excellence<br>built on integrity</h2>
             </div>
-            <div class="grid-2" style="margin-top: 80px;">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="projects/home/other/4.bin" alt="Alares Team">
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Our Mission</h3>
-                        <p class="card-description">To deliver exceptional design and engineering solutions that enhance patient care, improve efficiency, and stand the test of time.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-content" style="padding: 60px 40px;">
-                        <p class="section-label" style="margin-bottom: 20px;">The Alares Name</p>
-                        <h3 style="font-size: 32px; font-weight: 700; margin-bottom: 20px; letter-spacing: -0.021em;">Swiftness without sacrifice.</h3>
-                        <p style="font-size: 17px; color: var(--text-secondary); line-height: 1.5;">Alares were a Roman militia known for their lightness and swiftness in combat. We bring that same speed and precision to every project — achieving objectives swiftly without sacrificing quality.</p>
-                    </div>
-                </div>
+            <p>Founded by West Point graduate and Green Beret officer Don Maggioli, Alares brings military precision and leadership to every project. The name Alares comes from the Roman militia — swift, precise, effective.</p>
+        </div>
+        <div class="about-grid">
+            <div class="about-cell">
+                <h3>Our Mission</h3>
+                <p>To deliver exceptional design and engineering solutions that enhance patient care, improve efficiency, and stand the test of time. We achieve our clients' objectives swiftly, without sacrificing quality for speed.</p>
             </div>
-        </section>
+            <div class="about-cell">
+                <h3>Our Approach</h3>
+                <p>Our military "can-do" attitude guides how we tackle challenges: with the energy to complete the best job possible and to always leave the world better than when we found it. <strong>Precision in every detail.</strong></p>
+            </div>
+        </div>
+    </section>
 
-        <!-- Services -->
-        <section class="section section-dark" id="services" style="padding: 120px 20px;">
-            <div class="section-content" style="text-align: center; margin-bottom: 80px;">
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="section-header">
+            <div>
                 <p class="section-label">What We Do</p>
-                <h2 class="section-headline">Comprehensive services.<br>Exceptional results.</h2>
+                <h2>Comprehensive<br>services</h2>
             </div>
-            <div class="grid-3" style="max-width: 1100px;">
-                <div class="feature-card feature-card-dark">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-5a2 2 0 012-2h4a2 2 0 012 2v5"/>
-                        </svg>
-                    </div>
-                    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 12px;">Architecture</h3>
-                    <p style="font-size: 17px; opacity: 0.8; line-height: 1.4;">Healthcare and clean room design with focus on safety, functionality, and aesthetic excellence.</p>
-                </div>
-                <div class="feature-card feature-card-dark">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                        </svg>
-                    </div>
-                    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 12px;">MEP Engineering</h3>
-                    <p style="font-size: 17px; opacity: 0.8; line-height: 1.4;">Mechanical, electrical, and plumbing systems designed for optimal performance.</p>
-                </div>
-                <div class="feature-card feature-card-dark">
-                    <div class="feature-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                    <h3 style="font-size: 24px; font-weight: 600; margin-bottom: 12px;">Commissioning</h3>
-                    <p style="font-size: 17px; opacity: 0.8; line-height: 1.4;">Certified commissioning ensuring your systems function at peak performance.</p>
-                </div>
+            <p>From initial concept to final commissioning, we provide end-to-end solutions for complex architectural and engineering challenges.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-item">
+                <p class="service-number">01</p>
+                <h3>Architecture</h3>
+                <p>Healthcare & clean room design with focus on safety, functionality, and aesthetic appeal.</p>
             </div>
-        </section>
+            <div class="service-item">
+                <p class="service-number">02</p>
+                <h3>MEP Engineering</h3>
+                <p>Mechanical, electrical, and plumbing systems designed for optimal performance.</p>
+            </div>
+            <div class="service-item">
+                <p class="service-number">03</p>
+                <h3>Structural</h3>
+                <p>Expert structural engineering ensuring safety and code compliance.</p>
+            </div>
+            <div class="service-item">
+                <p class="service-number">04</p>
+                <h3>Construction Mgmt</h3>
+                <p>Owner's representative services ensuring on-time, on-budget delivery.</p>
+            </div>
+            <div class="service-item">
+                <p class="service-number">05</p>
+                <h3>Commissioning</h3>
+                <p>Certified commissioning for optimal building performance.</p>
+            </div>
+            <div class="service-item">
+                <p class="service-number">06</p>
+                <h3>Sustainability</h3>
+                <p>Green building practices and eco-friendly design solutions.</p>
+            </div>
+        </div>
+    </section>
 
-        <!-- Work -->
-        <section class="section" id="work">
-            <div class="section-content" style="text-align: center; margin-bottom: 60px;">
+    <!-- Work -->
+    <section id="work">
+        <div class="section-header">
+            <div>
                 <p class="section-label">Portfolio</p>
-                <h2 class="section-headline">Selected Projects</h2>
+                <h2>Selected<br>Projects</h2>
             </div>
-            <div class="grid-2">
-                <div class="card">
-                    <div class="card-image">
-                        <img src="projects/home/other/14.bin" alt="Healthcare Facility">
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Healthcare Facility Design</h3>
-                        <p class="card-description">Complete architecture and MEP design for modern healthcare environments.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image">
-                        <img src="projects/home/other/15.bin" alt="Clean Room">
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Clean Room Environments</h3>
-                        <p class="card-description">Specialized controlled environments for critical applications.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image">
-                        <img src="projects/home/other/16.bin" alt="Campus Renovation">
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Campus Modernization</h3>
-                        <p class="card-description">Large-scale commissioning and retrofit projects.</p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-image">
-                        <img src="projects/home/other/17.bin" alt="Commercial Building">
-                    </div>
-                    <div class="card-content">
-                        <h3 class="card-title">Commercial Development</h3>
-                        <p class="card-description">Full-service design for commercial and institutional buildings.</p>
-                    </div>
+            <p>A selection of our recent work across architecture, MEP, and commissioning.</p>
+        </div>
+        <div class="work-grid">
+            <div class="work-item">
+                <img src="projects/home/other/14.bin" alt="Project">
+                <div class="work-overlay">
+                    <h4>Healthcare Facility</h4>
+                    <p>Architecture & MEP</p>
                 </div>
             </div>
-        </section>
+            <div class="work-item">
+                <img src="projects/home/other/15.bin" alt="Project">
+                <div class="work-overlay">
+                    <h4>Clean Room</h4>
+                    <p>Specialized Design</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <img src="projects/home/other/16.bin" alt="Project">
+                <div class="work-overlay">
+                    <h4>Campus Modernization</h4>
+                    <p>Commissioning</p>
+                </div>
+            </div>
+            <div class="work-item">
+                <img src="projects/home/other/17.bin" alt="Project">
+                <div class="work-overlay">
+                    <h4>Commercial Building</h4>
+                    <p>Full Service</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-        <!-- Contact -->
-        <section class="section section-dark" id="contact">
-            <div class="section-content" style="text-align: center;">
-                <p class="section-label">Get in Touch</p>
-                <h2 class="section-headline">Let's build something great together.</h2>
-                <p class="section-subhead" style="margin-bottom: 48px;">Ready to start your next project? We'd love to hear from you.</p>
-                <a href="mailto:info@alaresllc.com" class="button button-primary" style="font-size: 17px; padding: 14px 32px;">Contact Us</a>
-                <div style="margin-top: 60px; display: flex; justify-content: center; gap: 80px; flex-wrap: wrap;">
-                    <div style="text-align: center;">
-                        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-bottom: 8px;">Email</p>
-                        <p style="font-size: 17px;">info@alaresllc.com</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-bottom: 8px;">Phone</p>
-                        <p style="font-size: 17px;">(540) 479-9924</p>
-                    </div>
-                    <div style="text-align: center;">
-                        <p style="font-size: 12px; text-transform: uppercase; letter-spacing: 0.1em; opacity: 0.6; margin-bottom: 8px;">Location</p>
-                        <p style="font-size: 17px;">Culpeper, VA</p>
-                    </div>
-                </div>
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <div class="section-header" style="color: white;">
+            <div>
+                <p class="section-label" style="color: rgba(255,255,255,0.5);">Get in Touch</p>
+                <h2>Let's build<br>together</h2>
             </div>
-        </section>
-    </main>
+            <p style="color: rgba(255,255,255,0.7);">Ready to start your next project? We'd love to hear from you.</p>
+        </div>
+        <div class="contact-grid">
+            <div class="contact-item">
+                <h4>Email</h4>
+                <p><a href="mailto:info@alaresllc.com">info@alaresllc.com</a></p>
+            </div>
+            <div class="contact-item">
+                <h4>Phone</h4>
+                <p>(540) 479-9924</p>
+            </div>
+            <div class="contact-item">
+                <h4>Location</h4>
+                <p>427 Southgate Ave<br>Suite 101, Culpeper, VA</p>
+            </div>
+        </div>
+    </section>
 
     <!-- Footer -->
-    <footer class="globalfooter">
-        <div class="globalfooter-content">
-            <p>© 2025 Alares Architects and Engineers. All rights reserved.</p>
-            <div class="globalfooter-links">
+    <footer>
+        <div class="footer-inner">
+            <p class="footer-left">© 2025 Alares Architects and Engineers</p>
+            <div class="footer-right">
                 <a href="#about">About</a>
                 <a href="#services">Services</a>
                 <a href="#work">Work</a>
