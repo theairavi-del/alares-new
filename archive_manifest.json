@@ -1,0 +1,78 @@
+{
+  "startUrl": "https://alaresengineering.com/",
+  "timestamp": "2026-02-21T16:38:16.432Z",
+  "counts": {
+    "pages": 9,
+    "assets": 163
+  },
+  "capsHit": [],
+  "errors": [
+    {
+      "time": "2026-02-21T16:38:06.662Z",
+      "url": "https://img1.wsimg.com/isteam/ip/c089105e-5fb1-4bbf-9450-c3d20a04f63b/Flag-atrium-scaled.jpg/:",
+      "stage": "fetch-asset",
+      "message": "HTTP 404"
+    },
+    {
+      "time": "2026-02-21T16:38:06.720Z",
+      "url": "https://alaresengineering.com/m/cr=w:382",
+      "stage": "fetch-asset",
+      "message": "HTTP 404"
+    },
+    {
+      "time": "2026-02-21T16:38:06.886Z",
+      "url": "https://alaresengineering.com/m/cr=w:765",
+      "stage": "fetch-asset",
+      "message": "HTTP 404"
+    },
+    {
+      "time": "2026-02-21T16:38:06.964Z",
+      "url": "https://alaresengineering.com/m/cr=w:1147",
+      "stage": "fetch-asset",
+      "message": "HTTP 404"
+    },
+    {
+      "time": "2026-02-21T16:38:07.132Z",
+      "url": "https://alaresengineering.com/m",
+      "stage": "fetch-asset",
+      "message": "HTTP 404"
+    },
+    {
+      "time": "2026-02-21T16:38:08.113Z",
+      "url": "https://alaresengineering.com/m/cr=w:403",
+      "stage": "fetch-asset",
+      "message": "HTTP 404"
+    },
+    {
+      "time": "2026-02-21T16:38:08.258Z",
+      "url": "https://alaresengineering.com/m/cr=w:806",
+      "stage": "fetch-asset",
+      "message": "HTTP 404"
+    },
+    {
+      "time": "2026-02-21T16:38:08.355Z",
+      "url": "https://alaresengineering.com/m/cr=w:1209",
+      "stage": "fetch-asset",
+      "message": "HTTP 404"
+    },
+    {
+      "time": "2026-02-21T16:38:08.520Z",
+      "url": "https://alaresengineering.com/m/cr=w:600",
+      "stage": "fetch-asset",
+      "message": "HTTP 404"
+    },
+    {
+      "time": "2026-02-21T16:38:08.600Z",
+      "url": "https://alaresengineering.com/m/cr=w:1200",
+      "stage": "fetch-asset",
+      "message": "HTTP 404"
+    },
+    {
+      "time": "2026-02-21T16:38:08.763Z",
+      "url": "https://alaresengineering.com/m/cr=w:1800",
+      "stage": "fetch-asset",
+      "message": "HTTP 404"
+    }
+  ],
+  "skippedUrls": []
+}
