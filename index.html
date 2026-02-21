@@ -7,19 +7,20 @@
     <meta name="description" content="Great experiences build great results. Architecture, MEP, Structural, Commissioning services since 2007.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --bg: #fafafa;
-            --surface: #ffffff;
-            --surface-2: #f5f5f5;
-            --line: #e5e5e5;
-            --line-strong: #d4d4d4;
-            --text: #171717;
-            --text-secondary: #525252;
-            --text-tertiary: #737373;
-            --accent: #1e293b;
-            --accent-light: #334155;
+            --bg: #0a0a0a;
+            --surface: #111111;
+            --surface-2: #1a1a1a;
+            --surface-3: #242424;
+            --line: #2a2a2a;
+            --line-hover: #3a3a3a;
+            --text: #ffffff;
+            --text-secondary: #a0a0a0;
+            --text-tertiary: #666666;
+            --accent: #c9a962;
+            --accent-hover: #d4b978;
         }
 
         *, *::before, *::after {
@@ -33,18 +34,18 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Inter', -apple-system, sans-serif;
             background: var(--bg);
             color: var(--text);
             line-height: 1.6;
             -webkit-font-smoothing: antialiased;
+            overflow-x: hidden;
         }
 
-        h1, h2, h3, h4, h5, h6 {
-            font-family: 'Space Grotesk', sans-serif;
-            font-weight: 600;
+        h1, h2, h3 {
+            font-family: 'Playfair Display', serif;
+            font-weight: 500;
             line-height: 1.1;
-            letter-spacing: -0.02em;
         }
 
         img {
@@ -57,92 +58,78 @@
             text-decoration: none;
         }
 
-        /* Container */
-        .container {
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 48px;
-        }
-
-        @media (max-width: 768px) {
-            .container {
-                padding: 0 24px;
-            }
-        }
-
         /* Header */
-        .header {
+        header {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 100;
-            background: rgba(250, 250, 250, 0.95);
-            backdrop-filter: blur(10px);
+            padding: 24px 5vw;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s;
+        }
+
+        header.scrolled {
+            background: rgba(10,10,10,0.95);
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid var(--line);
         }
 
-        .header-inner {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            height: 72px;
-        }
-
         .logo {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 22px;
-            font-weight: 700;
-        }
-
-        .logo img {
-            height: 40px;
-            width: auto;
-        }
-
-        .nav {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .nav-link {
-            padding: 10px 16px;
-            font-size: 14px;
-            font-weight: 500;
-            color: var(--text-secondary);
-            border-radius: 6px;
-            transition: all 0.2s;
-        }
-
-        .nav-link:hover {
-            color: var(--text);
-            background: var(--surface-2);
-        }
-
-        .nav-cta {
-            padding: 10px 20px;
-            font-size: 14px;
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
             font-weight: 600;
-            background: var(--accent);
-            color: white;
-            border-radius: 6px;
-            margin-left: 8px;
+            letter-spacing: -0.5px;
         }
 
-        .mobile-toggle {
+        .logo span {
+            color: var(--accent);
+        }
+
+        nav {
+            display: flex;
+            gap: 40px;
+        }
+
+        nav a {
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--accent);
+            transition: width 0.3s;
+        }
+
+        nav a:hover {
+            color: var(--text);
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        .menu-btn {
             display: none;
             background: none;
             border: none;
+            color: var(--text);
             cursor: pointer;
-        }
-
-        @media (max-width: 768px) {
-            .nav { display: none; }
-            .mobile-toggle { display: block; }
+            padding: 8px;
         }
 
         /* Hero */
@@ -151,8 +138,9 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            padding: 120px 0 80px;
+            padding: 120px 5vw 80px;
             position: relative;
+            overflow: hidden;
         }
 
         .hero-bg {
@@ -165,14 +153,14 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
-            opacity: 0.25;
+            opacity: 0.4;
         }
 
         .hero-bg::after {
             content: '';
             position: absolute;
             inset: 0;
-            background: linear-gradient(to bottom, rgba(250,250,250,0) 0%, var(--bg) 100%);
+            background: linear-gradient(to bottom, transparent 0%, var(--bg) 90%);
         }
 
         .hero-content {
@@ -182,217 +170,241 @@
         }
 
         .hero-eyebrow {
-            font-size: 13px;
-            font-weight: 600;
+            font-size: 12px;
+            font-weight: 500;
             text-transform: uppercase;
-            letter-spacing: 0.1em;
-            color: var(--text-tertiary);
-            margin-bottom: 24px;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 32px;
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+
+        .hero-eyebrow::before {
+            content: '';
+            width: 60px;
+            height: 1px;
+            background: var(--accent);
         }
 
         .hero h1 {
-            font-size: clamp(42px, 7vw, 80px);
-            line-height: 0.95;
+            font-size: clamp(48px, 10vw, 120px);
+            font-weight: 500;
             margin-bottom: 32px;
+            letter-spacing: -2px;
         }
 
-        .hero-desc {
+        .hero h1 em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .hero p {
             font-size: 18px;
             color: var(--text-secondary);
-            max-width: 560px;
-            margin-bottom: 40px;
-            line-height: 1.6;
+            max-width: 500px;
+            margin-bottom: 48px;
+            line-height: 1.7;
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            padding: 14px 28px;
-            font-size: 15px;
-            font-weight: 600;
-            border-radius: 6px;
-            transition: all 0.2s;
+            gap: 12px;
+            padding: 16px 32px;
+            font-size: 13px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            border: 1px solid var(--line);
+            background: transparent;
+            color: var(--text);
             cursor: pointer;
-            border: none;
+            transition: all 0.3s;
         }
 
-        .btn-primary {
+        .btn:hover {
+            border-color: var(--accent);
             background: var(--accent);
-            color: white;
+            color: var(--bg);
         }
 
-        .btn-primary:hover {
-            background: var(--accent-light);
-            transform: translateY(-1px);
+        .scroll-indicator {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: var(--text-tertiary);
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .scroll-indicator::after {
+            content: '';
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--text-tertiary), transparent);
+            animation: scrollPulse 2s infinite;
+        }
+
+        @keyframes scrollPulse {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Sections */
+        section {
+            padding: 120px 5vw;
+        }
+
+        .section-header {
+            margin-bottom: 80px;
+        }
+
+        .section-label {
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--accent);
+            margin-bottom: 16px;
+        }
+
+        .section-header h2 {
+            font-size: clamp(36px, 5vw, 64px);
+            margin-bottom: 24px;
+        }
+
+        .section-header p {
+            font-size: 18px;
+            color: var(--text-secondary);
+            max-width: 600px;
+            line-height: 1.7;
         }
 
         /* Stats Bar */
-        .stats-bar {
-            margin-top: auto;
-            padding-top: 80px;
-            position: relative;
-            z-index: 1;
-        }
-
-        .stats-grid {
+        .stats {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             border-top: 1px solid var(--line);
             border-bottom: 1px solid var(--line);
         }
 
-        .stat-item {
-            padding: 32px 24px;
+        .stat {
+            padding: 48px 32px;
             text-align: center;
         }
 
-        .stat-item:not(:last-child) {
+        .stat:not(:last-child) {
             border-right: 1px solid var(--line);
         }
 
         .stat-number {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: 40px;
-            font-weight: 700;
-            line-height: 1;
+            font-family: 'Playfair Display', serif;
+            font-size: 56px;
+            font-weight: 500;
+            color: var(--accent);
             margin-bottom: 8px;
+            line-height: 1;
         }
 
         .stat-label {
-            font-size: 13px;
-            color: var(--text-tertiary);
-            text-transform: uppercase;
-            letter-spacing: 0.05em;
-        }
-
-        @media (max-width: 768px) {
-            .stats-grid {
-                grid-template-columns: 1fr;
-            }
-            .stat-item:not(:last-child) {
-                border-right: none;
-                border-bottom: 1px solid var(--line);
-            }
-        }
-
-        /* Section */
-        .section {
-            padding: 120px 0;
-        }
-
-        @media (max-width: 768px) {
-            .section {
-                padding: 80px 0;
-            }
-        }
-
-        .section-header {
-            max-width: 720px;
-            margin-bottom: 64px;
-        }
-
-        .section-label {
             font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
             color: var(--text-tertiary);
-            margin-bottom: 16px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
         }
 
-        .section h2 {
-            font-size: clamp(36px, 5vw, 56px);
-            margin-bottom: 20px;
+        /* About Section */
+        .about {
+            background: var(--surface);
         }
 
-        .section-intro {
-            font-size: 18px;
-            color: var(--text-secondary);
-            line-height: 1.7;
-        }
-
-        /* Mission */
-        .mission-section {
-            background: var(--surface-2);
-        }
-
-        .mission-grid {
+        .about-grid {
             display: grid;
             grid-template-columns: 1fr 1fr;
             gap: 80px;
             align-items: center;
         }
 
-        .mission-image {
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
+        .about-image {
+            position: relative;
         }
 
-        .mission-image img {
+        .about-image img {
             width: 100%;
-            height: 100%;
+            aspect-ratio: 4/5;
             object-fit: cover;
         }
 
-        .mission-content h2 {
-            font-size: 40px;
+        .about-image::before {
+            content: '';
+            position: absolute;
+            inset: -20px;
+            border: 1px solid var(--line);
+            z-index: -1;
+        }
+
+        .about-content p {
+            font-size: 17px;
+            color: var(--text-secondary);
+            line-height: 1.9;
             margin-bottom: 24px;
         }
 
-        .mission-content p {
+        .about-content strong {
+            color: var(--text);
+            font-weight: 500;
+        }
+
+        /* Name Meaning */
+        .meaning {
+            text-align: center;
+            background: var(--surface-2);
+            position: relative;
+        }
+
+        .meaning::before {
+            content: '"';
+            font-family: 'Playfair Display', serif;
+            font-size: 200px;
+            color: var(--surface-3);
+            position: absolute;
+            top: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            line-height: 1;
+            pointer-events: none;
+        }
+
+        .meaning-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .meaning h2 {
+            font-size: clamp(28px, 4vw, 48px);
+            font-style: italic;
+            margin-bottom: 40px;
+            line-height: 1.3;
+        }
+
+        .meaning h2 em {
+            color: var(--accent);
+            font-style: italic;
+        }
+
+        .meaning p {
             font-size: 16px;
             color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 20px;
-        }
-
-        .mission-content strong {
-            color: var(--text);
-            font-weight: 600;
-        }
-
-        @media (max-width: 968px) {
-            .mission-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-            .mission-image {
-                order: -1;
-            }
-        }
-
-        /* Name Section */
-        .name-section {
-            text-align: center;
-            background: var(--surface);
-        }
-
-        .name-section .section-header {
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .name-quote {
-            font-family: 'Space Grotesk', sans-serif;
-            font-size: clamp(22px, 3vw, 32px);
-            font-weight: 500;
-            line-height: 1.4;
-            max-width: 800px;
-            margin: 0 auto 32px;
-        }
-
-        .name-quote em {
-            color: var(--accent);
-            font-style: normal;
-        }
-
-        .name-body {
-            font-size: 17px;
-            color: var(--text-secondary);
-            max-width: 640px;
-            margin: 0 auto;
             line-height: 1.8;
         }
 
@@ -400,545 +412,433 @@
         .services-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 24px;
-        }
-
-        @media (max-width: 968px) {
-            .services-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .services-grid {
-                grid-template-columns: 1fr;
-            }
+            gap: 1px;
+            background: var(--line);
         }
 
         .service-card {
-            background: var(--surface);
-            border: 1px solid var(--line);
-            border-radius: 12px;
-            padding: 32px;
-            transition: all 0.2s;
+            background: var(--bg);
+            padding: 48px 40px;
+            transition: all 0.3s;
         }
 
         .service-card:hover {
-            border-color: var(--line-strong);
-            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+            background: var(--surface);
         }
 
-        .service-icon {
-            width: 48px;
-            height: 48px;
-            background: var(--surface-2);
-            border-radius: 10px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
+        .service-number {
+            font-size: 12px;
+            font-weight: 500;
             color: var(--accent);
-        }
-
-        .service-icon svg {
-            width: 24px;
-            height: 24px;
+            margin-bottom: 24px;
+            letter-spacing: 0.1em;
         }
 
         .service-card h3 {
-            font-size: 18px;
-            margin-bottom: 8px;
-        }
-
-        .service-card p {
-            font-size: 14px;
-            color: var(--text-tertiary);
-            line-height: 1.6;
-        }
-
-        /* Feature Sections */
-        .feature-section {
-            border-top: 1px solid var(--line);
-        }
-
-        .feature-section:nth-child(even) {
-            background: var(--surface-2);
-        }
-
-        .feature-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 80px;
-            align-items: center;
-        }
-
-        @media (max-width: 968px) {
-            .feature-grid {
-                grid-template-columns: 1fr;
-                gap: 40px;
-            }
-        }
-
-        .feature-image {
-            border-radius: 12px;
-            overflow: hidden;
-            aspect-ratio: 4/3;
-        }
-
-        .feature-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s;
-        }
-
-        .feature-image:hover img {
-            transform: scale(1.02);
-        }
-
-        .feature-content h3 {
-            font-size: 32px;
-            margin-bottom: 20px;
-        }
-
-        .feature-content p {
-            font-size: 16px;
-            color: var(--text-secondary);
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-
-        .feature-list {
-            list-style: none;
-            margin-top: 24px;
-            display: grid;
-            gap: 10px;
-        }
-
-        .feature-list li {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            font-size: 15px;
-            color: var(--text-secondary);
-        }
-
-        .feature-list li::before {
-            content: '';
-            width: 6px;
-            height: 6px;
-            background: var(--accent);
-            border-radius: 50%;
-        }
-
-        /* Gallery */
-        .gallery-section {
-            background: var(--surface-2);
-        }
-
-        .gallery-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 16px;
-        }
-
-        @media (max-width: 968px) {
-            .gallery-grid {
-                grid-template-columns: repeat(3, 1fr);
-            }
-        }
-
-        @media (max-width: 640px) {
-            .gallery-grid {
-                grid-template-columns: repeat(2, 1fr);
-                gap: 12px;
-            }
-        }
-
-        .gallery-item {
-            aspect-ratio: 1;
-            border-radius: 8px;
-            overflow: hidden;
-            cursor: pointer;
-        }
-
-        .gallery-item img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s;
-        }
-
-        .gallery-item:hover img {
-            transform: scale(1.05);
-        }
-
-        /* Footer */
-        .footer {
-            background: var(--accent);
-            color: white;
-            padding: 80px 0 40px;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1.5fr;
-            gap: 64px;
-            margin-bottom: 64px;
-        }
-
-        @media (max-width: 968px) {
-            .footer-grid {
-                grid-template-columns: 1fr 1fr;
-                gap: 48px;
-            }
-        }
-
-        @media (max-width: 640px) {
-            .footer-grid {
-                grid-template-columns: 1fr;
-                text-align: center;
-                gap: 40px;
-            }
-        }
-
-        .footer-brand h3 {
             font-size: 24px;
             margin-bottom: 16px;
         }
 
-        .footer-brand p {
-            font-size: 15px;
-            opacity: 0.8;
+        .service-card p {
+            font-size: 14px;
+            color: var(--text-secondary);
             line-height: 1.7;
         }
 
-        .footer h4 {
-            font-size: 12px;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            opacity: 0.6;
-            margin-bottom: 20px;
+        /* Work Section */
+        .work {
+            background: var(--surface);
         }
 
-        .footer-links {
-            list-style: none;
+        .work-grid {
             display: grid;
-            gap: 12px;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
+            background: var(--line);
         }
 
-        .footer-links a {
-            font-size: 14px;
-            opacity: 0.8;
-            transition: opacity 0.2s;
+        .work-item {
+            position: relative;
+            aspect-ratio: 16/10;
+            overflow: hidden;
+            cursor: pointer;
         }
 
-        .footer-links a:hover {
+        .work-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s ease;
+        }
+
+        .work-item:hover img {
+            transform: scale(1.05);
+        }
+
+        .work-item::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.6), transparent);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        .work-item:hover::after {
             opacity: 1;
         }
 
-        .footer-contact p {
-            font-size: 14px;
-            opacity: 0.8;
-            margin-bottom: 8px;
-            line-height: 1.6;
+        /* Contact Section */
+        .contact {
+            text-align: center;
         }
 
-        .footer-bottom {
-            border-top: 1px solid rgba(255,255,255,0.1);
-            padding-top: 32px;
+        .contact h2 {
+            font-size: clamp(32px, 5vw, 56px);
+            margin-bottom: 16px;
+        }
+
+        .contact > p {
+            color: var(--text-secondary);
+            margin-bottom: 48px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            gap: 80px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            text-align: left;
+        }
+
+        .contact-item h4 {
+            font-size: 11px;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            color: var(--text-tertiary);
+            margin-bottom: 12px;
+        }
+
+        .contact-item p {
+            font-size: 16px;
+            color: var(--text);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--line);
+            padding: 40px 5vw;
             display: flex;
             justify-content: space-between;
+            align-items: center;
             font-size: 13px;
-            opacity: 0.6;
+            color: var(--text-tertiary);
         }
 
-        @media (max-width: 640px) {
-            .footer-bottom {
+        footer a:hover {
+            color: var(--text);
+        }
+
+        /* Mobile Menu */
+        .mobile-menu {
+            position: fixed;
+            top: 0;
+            right: 0;
+            bottom: 0;
+            width: 100%;
+            max-width: 400px;
+            background: var(--surface);
+            z-index: 200;
+            transform: translateX(100%);
+            transition: transform 0.4s ease;
+            padding: 100px 40px;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        .mobile-menu a {
+            display: block;
+            font-size: 32px;
+            font-family: 'Playfair Display', serif;
+            padding: 16px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .menu-close {
+            position: absolute;
+            top: 24px;
+            right: 24px;
+            background: none;
+            border: none;
+            color: var(--text);
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            nav { display: none; }
+            .menu-btn { display: block; }
+            
+            .about-grid {
+                grid-template-columns: 1fr;
+                gap: 60px;
+            }
+            
+            .about-image::before { display: none; }
+            
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .hero { padding: 100px 5vw 60px; }
+            .hero h1 { font-size: 42px; letter-spacing: -1px; }
+            
+            section { padding: 80px 5vw; }
+            
+            .stats { grid-template-columns: 1fr; }
+            .stat:not(:last-child) {
+                border-right: none;
+                border-bottom: 1px solid var(--line);
+            }
+            .stat-number { font-size: 42px; }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .work-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                gap: 32px;
+                align-items: center;
+            }
+            
+            .contact-item {
+                text-align: center;
+            }
+            
+            footer {
                 flex-direction: column;
                 gap: 16px;
                 text-align: center;
+            }
+        }
+
+        /* Animations */
+        @media (prefers-reduced-motion: no-preference) {
+            .fade-in {
+                opacity: 0;
+                transform: translateY(30px);
+                transition: opacity 0.8s ease, transform 0.8s ease;
+            }
+            
+            .fade-in.visible {
+                opacity: 1;
+                transform: translateY(0);
             }
         }
     </style>
 </head>
 <body>
     <!-- Header -->
-    <header class="header">
-        <div class="container header-inner">
-            <a href="#" class="logo">
-                <img src="projects/home/other/2.bin" alt="">
-                Alares
-            </a>
-            <nav class="nav">
-                <a href="#mission" class="nav-link">Mission</a>
-                <a href="#services" class="nav-link">Services</a>
-                <a href="#work" class="nav-link">Work</a>
-                <a href="#contact" class="nav-cta">Contact</a>
-            </nav>
-            <button class="mobile-toggle" id="mobileToggle" aria-label="Menu">
-                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M3 12h18M3 6h18M3 18h18"/>
-                </svg>
-            </button>
-        </div>
+    <header id="header">
+        <a href="#" class="logo">Alares <span>Architects</span></a>
+        <nav>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+        </nav>
+        <button class="menu-btn" id="menuBtn" aria-label="Menu">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M3 12h18M3 6h18M3 18h18"/>
+            </svg>
+        </button>
     </header>
+
+    <!-- Mobile Menu -->
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="menu-close" id="menuClose">×</button>
+        <a href="#about">About</a>
+        <a href="#services">Services</a>
+        <a href="#work">Work</a>
+        <a href="#contact">Contact</a>
+    </div>
 
     <!-- Hero -->
     <section class="hero">
         <div class="hero-bg">
             <img src="projects/home/other/3.bin" alt="">
         </div>
-        <div class="container">
-            <div class="hero-content">
-                <p class="hero-eyebrow">Architecture & Engineering Since 2007</p>
-                <h1>Great experiences build great results</h1>
-                <p class="hero-desc">Comprehensive design and engineering services with expertise in healthcare, clean rooms, and sustainable building practices.</p>
-                <a href="#services" class="btn btn-primary">Explore Services</a>
-            </div>
+        <div class="hero-content">
+            <p class="hero-eyebrow">Since 2007</p>
+            <h1>Great experiences <em>build great results</em></h1>
+            <p>Comprehensive design and engineering services with expertise in healthcare, clean rooms, and sustainable building practices.</p>
+            <a href="#services" class="btn">Explore Our Work</a>
         </div>
-        <div class="container stats-bar">
-            <div class="stats-grid">
-                <div class="stat-item">
-                    <div class="stat-number">50M+</div>
-                    <div class="stat-label">Sq Ft Commissioned</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">80M+</div>
-                    <div class="stat-label">Sq Ft Retro Commissioned</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">17+</div>
-                    <div class="stat-label">Years Experience</div>
-                </div>
-            </div>
-        </div>
+        <div class="scroll-indicator">Scroll</div>
     </section>
 
-    <!-- Mission -->
-    <section class="section mission-section" id="mission">
-        <div class="container">
-            <div class="mission-grid">
-                <div class="mission-content">
-                    <p class="section-label">Our Story</p>
-                    <h2>A Legacy of Excellence</h2>
-                    <p>Since <strong>2007</strong>, Alares has been providing design services to clients across the nation. Our team of Architects and Engineers shares a genuine and collective drive to find the best solutions for every project.</p>
-                    <p>Our approach reflects the leadership of our founder, <strong>Don Maggioli</strong> — a West Point graduate and former Green Beret officer. This military "can-do" attitude guides how we tackle challenges.</p>
-                </div>
-                <div class="mission-image">
-                    <img src="projects/home/other/4.bin" alt="Alares Team">
-                </div>
-            </div>
+    <!-- Stats -->
+    <div class="stats">
+        <div class="stat">
+            <div class="stat-number">50M+</div>
+            <div class="stat-label">Sq Ft Commissioned</div>
         </div>
-    </section>
+        <div class="stat">
+            <div class="stat-number">80M+</div>
+            <div class="stat-label">Sq Ft Retro Commissioned</div>
+        </div>
+        <div class="stat">
+            <div class="stat-number">17+</div>
+            <div class="stat-label">Years Experience</div>
+        </div>
+    </div>
 
-    <!-- Name Origin -->
-    <section class="section name-section">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">Our Name</p>
-                <p class="name-quote">The name <em>Alares</em> was selected because our philosophy is to always achieve our clients' objectives in a <em>swift manner</em>, without sacrificing quality for speed.</p>
-                <div class="name-body">
-                    <p>Alares were a kind of militia among the Romans, so called from <em>ala</em> — Latin for "wing" — because of their lightness and swiftness in combat.</p>
-                </div>
+    <!-- About -->
+    <section class="about" id="about">
+        <div class="about-grid">
+            <div class="about-image">
+                <img src="projects/home/other/4.bin" alt="Alares Team">
+            </div>
+            <div class="about-content">
+                <p class="section-label">Our Story</p>
+                <h2>A Legacy of Excellence</h2>
+                <p>Since <strong>2007</strong>, Alares has been providing design services to clients across the nation. Our team of Architects and Engineers shares a genuine and collective drive to find the best solutions for every project.</p>
+                <p>Our approach reflects the leadership of our founder, <strong>Don Maggioli</strong> — a West Point graduate and former Green Beret officer. This military "can-do" attitude guides how we tackle challenges.</p>
+                <p>The name <strong>Alares</strong> comes from the Roman militia, known for their swiftness in combat. We achieve our clients' objectives in a swift manner, without sacrificing quality for speed.</p>
             </div>
         </div>
     </section>
 
     <!-- Services -->
-    <section class="section" id="services">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">What We Do</p>
-                <h2>Comprehensive Design & Engineering Services</h2>
-                <p class="section-intro">From initial concept to final commissioning, we provide end-to-end solutions for complex architectural and engineering challenges.</p>
+    <section id="services">
+        <div class="section-header">
+            <p class="section-label">What We Do</p>
+            <h2>Our Services</h2>
+            <p>From initial concept to final commissioning, we provide end-to-end solutions for complex architectural and engineering challenges.</p>
+        </div>
+        <div class="services-grid">
+            <div class="service-card">
+                <p class="service-number">01</p>
+                <h3>Architecture</h3>
+                <p>Comprehensive design services with strong focus in healthcare and clean room industries.</p>
             </div>
-            <div class="services-grid">
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-5a2 2 0 012-2h4a2 2 0 012 2v5"/>
-                        </svg>
-                    </div>
-                    <h3>Architecture</h3>
-                    <p>Healthcare & clean room design with focus on safety, functionality, and aesthetic appeal.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
-                        </svg>
-                    </div>
-                    <h3>MEP Services</h3>
-                    <p>Mechanical, Electrical, and Plumbing systems for modern healthcare facilities.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <rect x="4" y="4" width="16" height="16" rx="2"/>
-                            <path d="M4 12h16M12 4v16"/>
-                        </svg>
-                    </div>
-                    <h3>Structural</h3>
-                    <p>Expert structural engineering ensuring safety and code compliance.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
-                            <path d="M14 2v6h6"/>
-                        </svg>
-                    </div>
-                    <h3>Construction Mgmt</h3>
-                    <p>Owner's representative services ensuring on-time, on-budget delivery.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
-                        </svg>
-                    </div>
-                    <h3>Commissioning</h3>
-                    <p>Certified commissioning for optimal building performance.</p>
-                </div>
-                <div class="service-card">
-                    <div class="service-icon">
-                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                            <circle cx="12" cy="12" r="10"/>
-                            <path d="M12 2a15.3 15.3 0 014 10 15.3 15.3 0 01-4 10 15.3 15.3 0 01-4-10 15.3 15.3 0 014-10z"/>
-                        </svg>
-                    </div>
-                    <h3>Sustainability</h3>
-                    <p>Green building practices and eco-friendly design solutions.</p>
-                </div>
+            <div class="service-card">
+                <p class="service-number">02</p>
+                <h3>MEP Services</h3>
+                <p>Mechanical, Electrical, and Plumbing systems for modern facilities.</p>
+            </div>
+            <div class="service-card">
+                <p class="service-number">03</p>
+                <h3>Structural</h3>
+                <p>Expert engineering ensuring safety and code compliance.</p>
+            </div>
+            <div class="service-card">
+                <p class="service-number">04</p>
+                <h3>Construction Mgmt</h3>
+                <p>Owner's representative services on time and on budget.</p>
+            </div>
+            <div class="service-card">
+                <p class="service-number">05</p>
+                <h3>Commissioning</h3>
+                <p>Certified commissioning for optimal building performance.</p>
+            </div>
+            <div class="service-card">
+                <p class="service-number">06</p>
+                <h3>Sustainability</h3>
+                <p>Green building practices and eco-friendly design.</p>
             </div>
         </div>
     </section>
 
-    <!-- Architecture -->
-    <section class="section feature-section">
-        <div class="container">
-            <div class="feature-grid">
-                <div class="feature-image">
-                    <img src="projects/home/other/3.bin" alt="Architecture">
-                </div>
-                <div class="feature-content">
-                    <p class="section-label">Architecture</p>
-                    <h3>Architectural Design</h3>
-                    <p>We offer comprehensive design services with a strong focus in the healthcare and clean room industries. Our experienced architects and engineers collaborate closely with clients.</p>
-                    <ul class="feature-list">
-                        <li>Healthcare facility design</li>
-                        <li>Clean room environments</li>
-                        <li>Commercial & residential projects</li>
-                        <li>Interior design services</li>
-                    </ul>
-                </div>
-            </div>
+    <!-- Work -->
+    <section class="work" id="work">
+        <div class="section-header">
+            <p class="section-label">Portfolio</p>
+            <h2>Selected Projects</h2>
+            <p>A selection of our recent work across architecture, MEP, and commissioning.</p>
+        </div>
+        <div class="work-grid">
+            <div class="work-item"><img src="projects/home/other/14.bin" alt=""></div>
+            <div class="work-item"><img src="projects/home/other/15.bin" alt=""></div>
+            <div class="work-item"><img src="projects/home/other/16.bin" alt=""></div>
+            <div class="work-item"><img src="projects/home/other/17.bin" alt=""></div>
+            <div class="work-item"><img src="projects/home/other/18.bin" alt=""></div>
+            <div class="work-item"><img src="projects/home/other/19.bin" alt=""></div>
         </div>
     </section>
 
-    <!-- MEP -->
-    <section class="section feature-section">
-        <div class="container">
-            <div class="feature-grid" style="direction: rtl;">
-                <div class="feature-image" style="direction: ltr;">
-                    <img src="projects/home/other/11.bin" alt="MEP Services">
-                </div>
-                <div class="feature-content" style="direction: ltr;">
-                    <p class="section-label">Engineering</p>
-                    <h3>Mechanical, Electrical & Plumbing</h3>
-                    <p>We have completed dozens of MEP system upgrades including campus boiler plants, chillers, and air handlers. Our professional engineering capabilities provide the in-depth perspective needed.</p>
-                    <ul class="feature-list">
-                        <li>Campus boiler plant replacements</li>
-                        <li>Chiller and air handler upgrades</li>
-                        <li>Campus electrical upgrades</li>
-                        <li>Building control systems</li>
-                    </ul>
-                </div>
+    <!-- Contact -->
+    <section class="contact" id="contact">
+        <p class="section-label">Get in Touch</p>
+        <h2>Let's Build Something Great</h2>
+        <p>Ready to start your next project? We'd love to hear from you.</p>
+        <div class="contact-info">
+            <div class="contact-item">
+                <h4>Email</h4>
+                <p>info@alaresllc.com</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Commissioning -->
-    <section class="section feature-section">
-        <div class="container">
-            <div class="feature-grid">
-                <div class="feature-image">
-                    <img src="projects/home/other/28.bin" alt="Commissioning">
-                </div>
-                <div class="feature-content">
-                    <p class="section-label">Commissioning</p>
-                    <h3>Commissioning Services</h3>
-                    <p>We are a certified commissioning firm that has commissioned over 50 million square feet of new and renovated buildings. Our team ensures your systems function properly.</p>
-                    <p><strong>Retro Commissioning</strong> involves testing and confirming the operation of building equipment systems that have never been officially commissioned before.</p>
-                </div>
+            <div class="contact-item">
+                <h4>Phone</h4>
+                <p>(540) 479-9924</p>
             </div>
-        </div>
-    </section>
-
-    <!-- Gallery -->
-    <section class="section gallery-section" id="work">
-        <div class="container">
-            <div class="section-header">
-                <p class="section-label">Portfolio</p>
-                <h2>Selected Projects</h2>
-                <p class="section-intro">A selection of our recent work across architecture, MEP, and commissioning.</p>
-            </div>
-            <div class="gallery-grid">
-                <div class="gallery-item"><img src="projects/home/other/14.bin" alt="Project"></div>
-                <div class="gallery-item"><img src="projects/home/other/15.bin" alt="Project"></div>
-                <div class="gallery-item"><img src="projects/home/other/16.bin" alt="Project"></div>
-                <div class="gallery-item"><img src="projects/home/other/17.bin" alt="Project"></div>
-                <div class="gallery-item"><img src="projects/home/other/18.bin" alt="Project"></div>
-                <div class="gallery-item"><img src="projects/home/other/19.bin" alt="Project"></div>
-                <div class="gallery-item"><img src="projects/home/other/20.bin" alt="Project"></div>
-                <div class="gallery-item"><img src="projects/home/other/21.bin" alt="Project"></div>
+            <div class="contact-item">
+                <h4>Location</h4>
+                <p>427 Southgate Ave, Suite 101<br>Culpeper, VA 22701</p>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="footer" id="contact">
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h3>Alares Architects and Engineers</h3>
-                    <p>Providing comprehensive design and engineering services since 2007. Our military-inspired commitment to excellence drives everything we do.</p>
-                </div>
-                <div>
-                    <h4>Services</h4>
-                    <ul class="footer-links">
-                        <li><a href="#">Architecture</a></li>
-                        <li><a href="#">MEP Services</a></li>
-                        <li><a href="#">Structural</a></li>
-                        <li><a href="#">Commissioning</a></li>
-                    </ul>
-                </div>
-                <div>
-                    <h4>Company</h4>
-                    <ul class="footer-links">
-                        <li><a href="#mission">Our Mission</a></li>
-                        <li><a href="#work">Projects</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
-                </div>
-                <div class="footer-contact">
-                    <h4>Contact</h4>
-                    <p>info@alaresllc.com</p>
-                    <p>(540) 479-9924</p>
-                    <p>427 Southgate Ave, Suite 101<br>Culpeper, VA 22701</p>
-                </div>
-            </div>
-            <div class="footer-bottom">
-                <p>© 2025 Alares Architects and Engineers. All rights reserved.</p>
-            </div>
-        </div>
+    <footer>
+        <p>© 2025 Alares Architects and Engineers</p>
+        <p>All rights reserved</p>
     </footer>
 
     <script>
-        document.getElementById('mobileToggle').addEventListener('click', function() {
-            alert('Menu clicked - mobile menu would open here');
+        // Header scroll effect
+        const header = document.getElementById('header');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 50) {
+                header.classList.add('scrolled');
+            } else {
+                header.classList.remove('scrolled');
+            }
+        });
+
+        // Mobile menu
+        const menuBtn = document.getElementById('menuBtn');
+        const menuClose = document.getElementById('menuClose');
+        const mobileMenu = document.getElementById('mobileMenu');
+
+        menuBtn.addEventListener('click', () => {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        });
+
+        menuClose.addEventListener('click', () => {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        document.querySelectorAll('.mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                document.body.style.overflow = '';
+            });
         });
     </script>
 </body>
