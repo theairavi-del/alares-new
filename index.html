@@ -537,28 +537,176 @@
                 display: block;
             }
             
+            .nav-container {
+                height: 60px;
+            }
+            
+            .logo img {
+                height: 50px;
+            }
+            
+            section {
+                padding: 50px 0;
+            }
+            
+            .hero {
+                min-height: 60vh;
+            }
+            
+            .hero-content {
+                padding: 80px 20px 40px;
+            }
+            
+            .hero-content h1 {
+                font-size: 28px;
+                line-height: 1.2;
+            }
+            
+            .hero-content p {
+                font-size: 16px;
+                margin-bottom: 24px;
+            }
+            
+            .btn {
+                padding: 12px 24px;
+                font-size: 14px;
+            }
+            
+            .section-title {
+                font-size: 24px;
+            }
+            
+            .section-subtitle {
+                font-size: 15px;
+            }
+            
             .mission-grid,
             .featured-grid {
                 grid-template-columns: 1fr;
-                gap: 40px;
+                gap: 30px;
+            }
+            
+            .mission-grid {
+                display: flex;
+                flex-direction: column;
+            }
+            
+            .mission-image {
+                order: -1;
+            }
+            
+            .mission-content h2 {
+                font-size: 24px;
+            }
+            
+            .mission-content p {
+                font-size: 15px;
             }
             
             .featured-grid.reverse {
                 direction: ltr;
             }
             
-            .services-grid,
-            .gallery-grid {
+            .featured-image img {
+                height: 200px;
+            }
+            
+            .featured-content h3 {
+                font-size: 22px;
+            }
+            
+            .services-grid {
                 grid-template-columns: 1fr;
+                gap: 12px;
+            }
+            
+            .service-card {
+                padding: 20px;
+                text-align: left;
+                display: flex;
+                align-items: flex-start;
+                gap: 16px;
+            }
+            
+            .service-icon {
+                width: 48px;
+                height: 48px;
+                margin: 0;
+                flex-shrink: 0;
+            }
+            
+            .service-icon svg {
+                width: 22px;
+                height: 22px;
+            }
+            
+            .service-card h3 {
+                font-size: 16px;
+                margin-bottom: 4px;
+            }
+            
+            .service-card p {
+                font-size: 13px;
+                line-height: 1.5;
+            }
+            
+            .stats {
+                padding: 40px 0;
             }
             
             .stats-grid {
                 grid-template-columns: 1fr;
-                gap: 30px;
+                gap: 24px;
+            }
+            
+            .stat-number {
+                font-size: 36px;
+            }
+            
+            .gallery-grid {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 10px;
+            }
+            
+            .gallery-item {
+                aspect-ratio: 1/1;
+            }
+            
+            .footer {
+                padding: 40px 0 24px;
             }
             
             .footer-grid {
                 grid-template-columns: 1fr;
+                gap: 24px;
+                text-align: center;
+            }
+            
+            .footer-brand h3 {
+                font-size: 20px;
+            }
+            
+            .footer h4 {
+                margin-bottom: 12px;
+            }
+            
+            .footer-links {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 8px 16px;
+            }
+            
+            .footer-links li {
+                margin: 0;
+            }
+            
+            .footer-bottom {
+                font-size: 12px;
+            }
+            
+            .name-content p {
+                font-size: 15px;
             }
         }
     </style>
@@ -663,8 +811,10 @@
                             <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-5a2 2 0 012-2h4a2 2 0 012 2v5"/>
                         </svg>
                     </div>
-                    <h3>Architecture</h3>
-                    <p>Comprehensive architectural design services with strong focus in healthcare and clean room industries.</p>
+                    <div>
+                        <h3>Architecture</h3>
+                        <p>Healthcare & clean room design services</p>
+                    </div>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -672,8 +822,10 @@
                             <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
                         </svg>
                     </div>
-                    <h3>MEP Services</h3>
-                    <p>Mechanical, Electrical, and Plumbing systems design and upgrades for modern facilities.</p>
+                    <div>
+                        <h3>MEP Services</h3>
+                        <p>Mechanical, Electrical, Plumbing systems</p>
+                    </div>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -682,8 +834,10 @@
                             <path d="M4 12h16M12 4v16"/>
                         </svg>
                     </div>
-                    <h3>Structural</h3>
-                    <p>Expert structural engineering ensuring safety and code compliance for every project.</p>
+                    <div>
+                        <h3>Structural</h3>
+                        <p>Engineering for safety & compliance</p>
+                    </div>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -692,8 +846,10 @@
                             <path d="M14 2v6h6"/>
                         </svg>
                     </div>
-                    <h3>Construction Management</h3>
-                    <p>Owner's representative services ensuring projects complete on time and within budget.</p>
+                    <div>
+                        <h3>Construction Mgmt</h3>
+                        <p>Owner's rep on time & budget</p>
+                    </div>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -701,8 +857,10 @@
                             <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
                         </svg>
                     </div>
-                    <h3>Commissioning</h3>
-                    <p>Certified commissioning for new and renovated buildings to ensure optimal performance.</p>
+                    <div>
+                        <h3>Commissioning</h3>
+                        <p>New & retro commissioning</p>
+                    </div>
                 </div>
                 <div class="service-card">
                     <div class="service-icon">
@@ -712,8 +870,10 @@
                             <path d="M2 12h20"/>
                         </svg>
                     </div>
-                    <h3>Sustainability</h3>
-                    <p>Sustainable building practices including energy-efficient materials and green certifications.</p>
+                    <div>
+                        <h3>Sustainability</h3>
+                        <p>Green building & eco-friendly design</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -789,14 +949,18 @@
                 <p class="section-subtitle">A selection of our recent work</p>
             </div>
             <div class="gallery-grid">
-                <div class="gallery-item"><img src="projects/home/other/14.bin" alt="Project 1"></div>
-                <div class="gallery-item"><img src="projects/home/other/15.bin" alt="Project 2"></div>
-                <div class="gallery-item"><img src="projects/home/other/16.bin" alt="Project 3"></div>
-                <div class="gallery-item"><img src="projects/home/other/17.bin" alt="Project 4"></div>
-                <div class="gallery-item"><img src="projects/home/other/18.bin" alt="Project 5"></div>
-                <div class="gallery-item"><img src="projects/home/other/19.bin" alt="Project 6"></div>
-                <div class="gallery-item"><img src="projects/home/other/20.bin" alt="Project 7"></div>
-                <div class="gallery-item"><img src="projects/home/other/21.bin" alt="Project 8"></div>
+                <div class="gallery-item"><img src="projects/home/other/14.bin" alt="Project"></div>
+                <div class="gallery-item"><img src="projects/home/other/15.bin" alt="Project"></div>
+                <div class="gallery-item"><img src="projects/home/other/16.bin" alt="Project"></div>
+                <div class="gallery-item"><img src="projects/home/other/17.bin" alt="Project"></div>
+                <div class="gallery-item"><img src="projects/home/other/18.bin" alt="Project"></div>
+                <div class="gallery-item"><img src="projects/home/other/19.bin" alt="Project"></div>
+                <div class="gallery-item"><img src="projects/home/other/20.bin" alt="Project"></div>
+                <div class="gallery-item"><img src="projects/home/other/21.bin" alt="Project"></div>
+                <div class="gallery-item"><img src="projects/home/other/22.bin" alt="Project"></div>
+                <div class="gallery-item"><img src="projects/home/other/23.bin" alt="Project"></div>
+                <div class="gallery-item"><img src="projects/home/other/24.bin" alt="Project"></div>
+                <div class="gallery-item"><img src="projects/home/other/25.bin" alt="Project"></div>
             </div>
         </div>
     </section>
