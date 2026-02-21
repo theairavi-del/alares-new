@@ -4,23 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Alares Architects and Engineers</title>
-    <meta name="description" content="Alares Architects and Engineers - Great experiences build great results. Architecture, MEP, Structural, and Commissioning services since 2007.">
+    <meta name="description" content="Alares Architects and Engineers - Great experiences build great results. Architecture, MEP, Structural, Commissioning services since 2007.">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro:wght@300;400;600;700&family=Work+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --navy: #0a1628;
-            --navy-light: #1a2744;
-            --gold: #c9a962;
-            --gold-light: #d4b978;
+            --primary: #6b778f;
+            --primary-dark: #3a475e;
+            --primary-darker: #273142;
+            --accent: #c1cbe0;
+            --accent-light: #e8ecf5;
+            --text: #1b1b1b;
+            --text-light: #575757;
+            --text-lighter: #878787;
             --white: #ffffff;
-            --gray-50: #f8f9fa;
-            --gray-100: #f1f3f5;
-            --gray-200: #e9ecef;
-            --gray-600: #6c757d;
-            --gray-800: #343a40;
-            --gray-900: #212529;
+            --bg-light: #f6f6f6;
+            --border: #b0b0b0;
         }
 
         * {
@@ -34,102 +34,113 @@
         }
 
         body {
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-family: 'Source Sans Pro', -apple-system, BlinkMacSystemFont, sans-serif;
+            font-size: 16px;
             line-height: 1.6;
-            color: var(--gray-800);
+            color: var(--text);
             background: var(--white);
         }
 
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Work Sans', sans-serif;
+            font-weight: 600;
+            line-height: 1.25;
+        }
+
+        /* Navigation */
         .navbar {
             position: fixed;
             top: 0;
             left: 0;
             right: 0;
             z-index: 1000;
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-bottom: 1px solid var(--gray-200);
+            background: rgba(255, 255, 255, 0.98);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(0,0,0,0.08);
         }
 
         .nav-container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 24px;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            height: 80px;
+            height: 75px;
         }
 
         .logo {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
             text-decoration: none;
         }
 
-        .logo-icon {
-            width: 40px;
-            height: 40px;
-            background: var(--navy);
-            border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--gold);
-            font-weight: 700;
-            font-size: 1.25rem;
+        .logo img {
+            height: 75px;
+            max-height: 75px;
+            width: auto;
         }
 
-        .logo-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
-            font-weight: 600;
-            color: var(--navy);
-        }
-
-        .nav-links {
+        .nav-menu {
             display: flex;
             align-items: center;
-            gap: 2.5rem;
+            gap: 32px;
             list-style: none;
         }
 
-        .nav-links a {
+        .nav-menu a {
             text-decoration: none;
-            color: var(--gray-600);
-            font-weight: 500;
-            font-size: 0.9375rem;
-            transition: color 0.2s ease;
+            color: var(--primary);
+            font-weight: 600;
+            font-size: 15px;
+            transition: color 0.2s;
+            position: relative;
         }
 
-        .nav-links a:hover {
-            color: var(--navy);
+        .nav-menu a:hover {
+            color: var(--primary-dark);
         }
 
-        .nav-cta {
-            background: var(--navy);
-            color: var(--white) !important;
-            padding: 0.75rem 1.5rem;
-            border-radius: 6px;
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--primary);
+            transition: width 0.3s;
         }
 
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .mobile-toggle {
+            display: none;
+            background: none;
+            border: none;
+            cursor: pointer;
+        }
+
+        /* Hero */
         .hero {
+            position: relative;
             min-height: 100vh;
             display: flex;
             align-items: center;
-            position: relative;
-            background: var(--navy);
+            justify-content: center;
             overflow: hidden;
+            margin-top: 0;
         }
 
-        .hero-bg {
+        .hero-image {
             position: absolute;
             inset: 0;
-            opacity: 0.4;
+            z-index: 0;
         }
 
-        .hero-bg img {
+        .hero-image img {
             width: 100%;
             height: 100%;
             object-fit: cover;
@@ -138,133 +149,729 @@
         .hero-overlay {
             position: absolute;
             inset: 0;
-            background: linear-gradient(135deg, rgba(10, 22, 40, 0.95) 0%, rgba(10, 22, 40, 0.7) 50%, rgba(10, 22, 40, 0.85) 100%);
+            background: linear-gradient(to bottom, rgba(10,22,40,0.4) 0%, rgba(10,22,40,0.6) 100%);
+            z-index: 1;
         }
 
         .hero-content {
             position: relative;
             z-index: 2;
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 8rem 2rem 4rem;
-            width: 100%;
-        }
-
-        .hero-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 5rem);
-            font-weight: 600;
-            color: var(--white);
-            line-height: 1.1;
+            text-align: center;
             max-width: 900px;
-            margin-bottom: 1.5rem;
+            padding: 120px 24px 80px;
+            color: var(--white);
         }
 
-        .hero-title span {
-            color: var(--gold);
+        .hero h1 {
+            font-size: clamp(32px, 6vw, 56px);
+            font-weight: 700;
+            margin-bottom: 24px;
+            text-shadow: 0 2px 20px rgba(0,0,0,0.3);
         }
 
-        .hero-subtitle {
-            font-size: clamp(1.125rem, 2vw, 1.375rem);
-            color: rgba(255, 255, 255, 0.8);
+        .hero p {
+            font-size: clamp(16px, 2.5vw, 20px);
+            opacity: 0.95;
             max-width: 600px;
-            margin-bottom: 2.5rem;
+            margin: 0 auto 40px;
+            text-shadow: 0 1px 10px rgba(0,0,0,0.3);
         }
 
         .btn {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            font-size: 1rem;
+            justify-content: center;
+            padding: 16px 32px;
+            font-family: 'Work Sans', sans-serif;
+            font-size: 16px;
             font-weight: 600;
             text-decoration: none;
-            border-radius: 6px;
-            transition: all 0.3s ease;
+            border-radius: 4px;
+            transition: all 0.3s;
             cursor: pointer;
             border: none;
         }
 
         .btn-primary {
-            background: var(--gold);
-            color: var(--navy);
+            background: var(--primary-dark);
+            color: var(--white);
         }
 
         .btn-primary:hover {
-            background: var(--gold-light);
+            background: var(--primary-darker);
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
         }
 
-        .btn-secondary {
-            background: transparent;
-            color: var(--white);
-            border: 2px solid rgba(255, 255, 255, 0.3);
+        .btn-white {
+            background: var(--white);
+            color: var(--primary-dark);
         }
 
+        .btn-white:hover {
+            background: var(--accent-light);
+        }
+
+        /* Sections */
         section {
-            padding: 6rem 0;
+            padding: 80px 0;
         }
 
         .container {
-            max-width: 1400px;
+            max-width: 1200px;
             margin: 0 auto;
-            padding: 0 2rem;
+            padding: 0 24px;
         }
 
         .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 4vw, 3rem);
+            font-size: clamp(28px, 4vw, 38px);
+            color: var(--text);
+            margin-bottom: 16px;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 18px;
+            color: var(--text-light);
+            text-align: center;
+            max-width: 700px;
+            margin: 0 auto 60px;
+        }
+
+        /* Mission Section */
+        .mission {
+            background: var(--bg-light);
+        }
+
+        .mission-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .mission-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .mission-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        .mission-content h2 {
+            font-size: 32px;
+            margin-bottom: 24px;
+            color: var(--text);
+        }
+
+        .mission-content p {
+            font-size: 17px;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            color: var(--primary-dark);
             font-weight: 600;
-            color: var(--navy);
-            margin-bottom: 1rem;
+        }
+
+        /* Name Origin Section */
+        .name-origin {
+            background: var(--primary-dark);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .name-origin .section-title {
+            color: var(--white);
+        }
+
+        .name-origin .section-subtitle {
+            color: rgba(255,255,255,0.8);
+        }
+
+        .name-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .name-content p {
+            font-size: 19px;
+            line-height: 1.8;
+            margin-bottom: 20px;
+        }
+
+        .name-content em {
+            font-style: italic;
+            color: var(--accent);
+        }
+
+        .name-quote {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 24px;
+            font-weight: 500;
+            color: var(--accent);
+            margin: 40px 0;
+            padding: 30px;
+            border-left: 4px solid var(--accent);
+            background: rgba(255,255,255,0.05);
+            text-align: left;
+        }
+
+        /* Services Grid */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px;
+        }
+
+        .service-card {
+            background: var(--white);
+            border: 1px solid rgba(0,0,0,0.08);
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.12);
+            border-color: var(--accent);
+        }
+
+        .service-icon {
+            width: 70px;
+            height: 70px;
+            background: var(--accent-light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 24px;
+            color: var(--primary-dark);
+        }
+
+        .service-icon svg {
+            width: 32px;
+            height: 32px;
+        }
+
+        .service-card h3 {
+            font-size: 20px;
+            margin-bottom: 12px;
+            color: var(--text);
+        }
+
+        .service-card p {
+            font-size: 15px;
+            color: var(--text-light);
+            line-height: 1.7;
+        }
+
+        /* Featured Service */
+        .featured-service {
+            padding: 100px 0;
+        }
+
+        .featured-service:nth-child(even) {
+            background: var(--bg-light);
+        }
+
+        .featured-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+
+        .featured-grid.reverse {
+            direction: rtl;
+        }
+
+        .featured-grid.reverse > * {
+            direction: ltr;
+        }
+
+        .featured-image {
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+        }
+
+        .featured-image img {
+            width: 100%;
+            height: 350px;
+            object-fit: cover;
+            display: block;
+        }
+
+        .featured-content h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: var(--text);
+        }
+
+        .featured-content > p {
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-light);
+            margin-bottom: 16px;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin-top: 24px;
+        }
+
+        .feature-list li {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            margin-bottom: 14px;
+            font-size: 15px;
+            color: var(--text);
+        }
+
+        .feature-list li::before {
+            content: '✓';
+            color: var(--primary);
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        /* Stats */
+        .stats {
+            background: var(--primary-darker);
+            color: var(--white);
+            padding: 60px 0;
+        }
+
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 40px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Work Sans', sans-serif;
+            font-size: 48px;
+            font-weight: 700;
+            color: var(--accent);
+            margin-bottom: 8px;
+        }
+
+        .stat-label {
+            font-size: 15px;
+            opacity: 0.8;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--primary-darker);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-brand h3 {
+            font-size: 24px;
+            margin-bottom: 16px;
+        }
+
+        .footer-brand p {
+            font-size: 15px;
+            opacity: 0.8;
+            line-height: 1.7;
+        }
+
+        .footer h4 {
+            font-size: 16px;
+            margin-bottom: 20px;
+            color: var(--accent);
+        }
+
+        .footer-links {
+            list-style: none;
+        }
+
+        .footer-links li {
+            margin-bottom: 10px;
+        }
+
+        .footer-links a {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 14px;
+            transition: color 0.2s;
+        }
+
+        .footer-links a:hover {
+            color: var(--white);
+        }
+
+        .footer-bottom {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 30px;
+            text-align: center;
+            font-size: 14px;
+            opacity: 0.6;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
         }
 
         @media (max-width: 768px) {
-            .nav-links {
+            .nav-menu {
                 display: none;
+            }
+            
+            .mobile-toggle {
+                display: block;
+            }
+            
+            .mission-grid,
+            .featured-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            
+            .featured-grid.reverse {
+                direction: ltr;
+            }
+            
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .stats-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
     <nav class="navbar">
         <div class="nav-container">
             <a href="#" class="logo">
-                <div class="logo-icon">A</div>
-                <span class="logo-text">Alares</span>
+                <img src="projects/home/other/2.bin" alt="Alares Architects and Engineers">
             </a>
-            <ul class="nav-links">
+            <ul class="nav-menu">
                 <li><a href="#mission">Our Mission</a></li>
                 <li><a href="#services">Services</a></li>
-                <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+                <li><a href="#case-studies">Case Studies</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
+            <button class="mobile-toggle" aria-label="Menu">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M3 12h18M3 6h18M3 18h18"/>
+                </svg>
+            </button>
         </div>
     </nav>
 
+    <!-- Hero -->
     <section class="hero">
-        <div class="hero-bg">
+        <div class="hero-image">
             <img src="projects/home/other/3.bin" alt="Alares Architecture">
         </div>
         <div class="hero-overlay"></div>
         <div class="hero-content">
-            <h1 class="hero-title">Great experiences <span>build great results</span></h1>
-            <p class="hero-subtitle">Alares provides comprehensive design and engineering services with a focus on healthcare, clean rooms, and sustainable building practices.</p>
-            <a href="#services" class="btn btn-primary">Explore Services</a>
-            <a href="#contact" class="btn btn-secondary" style="margin-left: 1rem;">Contact Us</a>
+            <h1>Great experiences build great results</h1>
+            <p>Alares Architects and Engineers provides comprehensive design and engineering services with expertise in healthcare, clean rooms, and sustainable building practices since 2007.</p>
+            <a href="#services" class="btn btn-white">Explore Our Services</a>
         </div>
     </section>
 
-    <section id="mission">
+    <!-- Mission -->
+    <section class="mission" id="mission">
         <div class="container">
-            <h2 class="section-title">Our Mission</h2>
-            <p>Since 2007, Alares has been providing design services to clients across the nation. Our team of Architects and Engineers shares a genuine and collective drive to find the best solutions for every project.</p>
+            <div class="mission-grid">
+                <div class="mission-image">
+                    <img src="projects/home/other/4.bin" alt="Alares Team">
+                </div>
+                <div class="mission-content">
+                    <h2>Our Mission</h2>
+                    <p>Since <span class="highlight">2007</span>, Alares has been providing design services to our clients. Our team of Architects and Engineers shares a genuine and collective drive to find the best solutions to the projects our clients need to get done.</p>
+                    <p>Our approach to challenges is often a direct reflection of our company's founder, <span class="highlight">Don Maggioli</span>. As a graduate of West Point and a former officer of the elite Green Berets, Don began the company based on the strong leadership training and high standards he gained from his earlier experiences.</p>
+                    <p>Today, this commitment to excellence and a military "can-do" attitude guide how we tackle challenges – with the energy to complete the best job possible and to always leave the world a better place than when we found it.</p>
+                </div>
+            </div>
         </div>
     </section>
 
-    <section id="services" style="background: var(--gray-50);">
+    <!-- Name Origin -->
+    <section class="name-origin">
+        <div class="container">
+            <h2 class="section-title">What Does Alares Mean?</h2>
+            <p class="section-subtitle">The story behind our name</p>
+            <div class="name-content">
+                <p>We are often asked, <em>"Why the name Alares?"</em> or <em>"What does Alares mean?"</em></p>
+                <p>The name Alares has significant meaning for our organization. <em>Alares</em> were a kind of militia among the Romans, so called from <em>ala</em> – or Latin for <em>"wing"</em> – because of their lightness and swiftness in combat.</p>
+                <div class="name-quote">
+                    "The name Alares was selected because our philosophy is based on our goal to always achieve our clients' objectives in a swift manner, without sacrificing quality for speed."
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats -->
+    <section class="stats">
+        <div class="container">
+            <div class="stats-grid">
+                <div class="stat">
+                    <div class="stat-number">50M+</div>
+                    <div class="stat-label">Square Feet Commissioned</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">80M+</div>
+                    <div class="stat-label">Square Feet Retro Commissioned</div>
+                </div>
+                <div class="stat">
+                    <div class="stat-number">17+</div>
+                    <div class="stat-label">Years of Excellence</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Overview -->
+    <section class="services" id="services">
         <div class="container">
             <h2 class="section-title">Our Services</h2>
-            <p>Comprehensive design and engineering solutions.</p>
+            <p class="section-subtitle">Comprehensive design and engineering solutions for complex projects</p>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M3 21h18M5 21V7l8-4 8 4v14M8 21v-5a2 2 0 012-2h4a2 2 0 012 2v5"/>
+                        </svg>
+                    </div>
+                    <h3>Architecture</h3>
+                    <p>Comprehensive architectural design services with strong focus in healthcare and clean room industries.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>MEP Services</h3>
+                    <p>Mechanical, Electrical, and Plumbing systems design and upgrades for modern facilities.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <rect x="4" y="4" width="16" height="16" rx="2"/>
+                            <path d="M4 12h16M12 4v16"/>
+                        </svg>
+                    </div>
+                    <h3>Structural</h3>
+                    <p>Expert structural engineering ensuring safety and code compliance for every project.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/>
+                            <path d="M14 2v6h6M16 13H8M16 17H8M10 9H8"/>
+                        </svg>
+                    </div>
+                    <h3>Construction Management</h3>
+                    <p>Owner's representative services ensuring projects complete on time and within budget.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3>Commissioning</h3>
+                    <p>Certified commissioning for new and renovated buildings to ensure optimal performance.</p>
+                </div>
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                            <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                            <path d="M2 17l10 5 10-5"/>
+                            <path d="M2 12l10 5 10-5"/>
+                        </svg>
+                    </div>
+                    <h3>Sustainability</h3>
+                    <p>Sustainable building practices including energy-efficient materials and green certifications.</p>
+                </div>
+            </div>
         </div>
     </section>
+
+    <!-- Architecture Detail -->
+    <section class="featured-service">
+        <div class="container">
+            <div class="featured-grid">
+                <div class="featured-image">
+                    <img src="projects/home/other/3.bin" alt="Architectural Design">
+                </div>
+                <div class="featured-content">
+                    <h3>Architectural Design</h3>
+                    <p>At Alares Architects and Engineers, we offer comprehensive design services with a strong focus in the healthcare and clean room industries. Our team of experienced architects and engineers collaborates closely with clients to ensure that every aspect of the design aligns with safety, functionality, and aesthetic appeal.</p>
+                    <p>Whether it's a new hospital or a remodel of an existing space, we are dedicated to delivering exceptional results that enhance patient care and staff efficiency.</p>
+                    <ul class="feature-list">
+                        <li>Healthcare facility design</li>
+                        <li>Clean room environments</li>
+                        <li>Commercial & residential projects</li>
+                        <li>Interior design services</li>
+                        <li>Green building practices</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- MEP Detail -->
+    <section class="featured-service">
+        <div class="container">
+            <div class="featured-grid reverse">
+                <div class="featured-image">
+                    <img src="projects/home/other/11.bin" alt="MEP Services">
+                </div>
+                <div class="featured-content">
+                    <h3>Mechanical, Electrical, and Plumbing</h3>
+                    <p>We have completed dozens of MEP system upgrades including replacements of campus boiler plants, chillers, and air handlers. In addition we have designed campus electrical upgrades and upgraded building control systems.</p>
+                    <p>These professional engineering capabilities – with a strong focus in the healthcare and clean rooms – provide us with the in-depth perspective to help you develop more advanced solutions for your projects.</p>
+                    <ul class="feature-list">
+                        <li>Campus boiler plant replacements</li>
+                        <li>Chiller and air handler upgrades</li>
+                        <li>Campus electrical upgrades</li>
+                        <li>Building control systems</li>
+                        <li>3D modeling and visualization</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Commissioning Detail -->
+    <section class="featured-service">
+        <div class="container">
+            <div class="featured-grid">
+                <div class="featured-image">
+                    <img src="projects/home/other/12.bin" alt="Commissioning Services">
+                </div>
+                <div class="featured-content">
+                    <h3>Commissioning Services</h3>
+                    <p>We are a certified commissioning firm that has commissioned over 50 million square feet of new and renovated buildings. Our team of experts will ensure that your systems are functioning properly and optimally.</p>
+                    <p><strong>Retro Commissioning</strong> involves testing and confirming the operation of building equipment systems that have never been officially commissioned before. Existing equipment is calibrated, controls are reset, and parts are replaced to return systems to their most efficient working order.</p>
+                    <p>We have retro commissioned over 80 million square feet and are considered experts in evaluating heating and cooling issues.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Environmental & Sustainability -->
+    <section class="featured-service">
+        <div class="container">
+            <div class="featured-grid reverse">
+                <div class="featured-image">
+                    <img src="projects/home/other/28.bin" alt="Environmental Services">
+                </div>
+                <div class="featured-content">
+                    <h3>Environmental & Sustainability</h3>
+                    <p>We are committed to using sustainable building practices that minimize the environmental impact of our projects. From energy-efficient materials to solar panels, we help you create spaces that are both beautiful and eco-friendly.</p>
+                    <p>Our approach integrates environmental responsibility with practical design solutions, ensuring your project meets both sustainability goals and operational requirements.</p>
+                    <ul class="feature-list">
+                        <li>Energy-efficient design</li>
+                        <li>Sustainable materials selection</li>
+                        <li>Solar panel integration</li>
+                        <li>Environmental impact assessment</li>
+                        <li>Green building certifications</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Case Studies -->
+    <section class="case-studies" id="case-studies" style="background: var(--bg-light);">
+        <div class="container">
+            <h2 class="section-title">Case Studies</h2>
+            <p class="section-subtitle">Explore our portfolio of successful projects</p>
+            <div style="text-align: center; padding: 60px 0;">
+                <a href="case-studies/index.html" class="btn btn-primary" style="margin: 0 10px;">View All Case Studies</a>
+                <a href="projects/index.html" style="margin: 0 10px; color: var(--primary); text-decoration: none; font-weight: 600;">Browse Project Gallery →</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer" id="contact">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <h3>Alares Architects and Engineers</h3>
+                    <p>Providing comprehensive design and engineering services since 2007. Our military-inspired commitment to excellence drives everything we do.</p>
+                </div>
+                <div>
+                    <h4>Services</h4>
+                    <ul class="footer-links">
+                        <li><a href="architecture/index.html">Architecture</a></li>
+                        <li><a href="mep-services/index.html">MEP Services</a></li>
+                        <li><a href="structural/index.html">Structural</a></li>
+                        <li><a href="commissioning/index.html">Commissioning</a></li>
+                        <li><a href="sustainability/index.html">Sustainability</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Company</h4>
+                    <ul class="footer-links">
+                        <li><a href="#mission">Our Mission</a></li>
+                        <li><a href="case-studies/index.html">Case Studies</a></li>
+                        <li><a href="projects/index.html">Projects</a></li>
+                        <li><a href="#contact">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4>Contact</h4>
+                    <ul class="footer-links">
+                        <li><a href="mailto:info@alaresllc.com">info@alaresllc.com</a></li>
+                        <li>Phone: (540) 479-9924</li>
+                        <li>Fax: (540) 479-9927</li>
+                        <li style="margin-top: 15px;">427 Southgate Ave<br>Suite 101<br>Culpeper, VA 22701</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                © 2007-2025 Alares Architects and Engineers. All rights reserved.
+            </div>
+        </div>
+    </footer>
 </body>
 </html>
