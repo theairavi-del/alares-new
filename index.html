@@ -157,6 +157,13 @@
             border: none;
             cursor: pointer;
             padding: 8px;
+            color: var(--text);
+            z-index: 1001;
+        }
+
+        .menu-btn svg {
+            width: 24px;
+            height: 24px;
         }
 
         /* Hero */
@@ -608,16 +615,18 @@
             right: 0;
             bottom: 0;
             background: var(--bg);
-            z-index: 2000;
+            z-index: 9999;
             padding: 100px 48px;
             opacity: 0;
             visibility: hidden;
-            transition: all 0.3s;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+            pointer-events: none;
         }
 
         .mobile-menu.active {
             opacity: 1;
             visibility: visible;
+            pointer-events: all;
         }
 
         .mobile-menu-close {
@@ -626,9 +635,15 @@
             right: 48px;
             background: none;
             border: none;
-            font-size: 24px;
+            font-size: 32px;
             cursor: pointer;
             color: var(--text);
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
         }
 
         .mobile-menu nav {
@@ -747,7 +762,7 @@
                 <a href="#work">Work</a>
                 <a href="#contact">Contact</a>
             </nav>
-            <button class="menu-btn" onclick="document.querySelector('.mobile-menu').classList.add('active')">
+            <button class="menu-btn" id="menuBtn" aria-label="Menu">
                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path d="M3 12h18M3 6h18M3 18h18"/>
                 </svg>
@@ -756,13 +771,13 @@
     </header>
 
     <!-- Mobile Menu -->
-    <div class="mobile-menu" onclick="if(event.target === this) this.classList.remove('active')">
-        <button class="mobile-menu-close" onclick="document.querySelector('.mobile-menu').classList.remove('active')">×</button>
+    <div class="mobile-menu" id="mobileMenu">
+        <button class="mobile-menu-close" id="menuClose" aria-label="Close menu">×</button>
         <nav>
-            <a href="#about" onclick="document.querySelector('.mobile-menu').classList.remove('active')">About</a>
-            <a href="#services" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Services</a>
-            <a href="#work" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Work</a>
-            <a href="#contact" onclick="document.querySelector('.mobile-menu').classList.remove('active')">Contact</a>
+            <a href="#about">About</a>
+            <a href="#services">Services</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
         </nav>
     </div>
 
@@ -972,5 +987,36 @@
             </div>
         </div>
     </footer>
+
+    <script>
+        // Mobile menu functionality
+        const menuBtn = document.getElementById('menuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const menuClose = document.getElementById('menuClose');
+        const menuLinks = mobileMenu.querySelectorAll('a');
+
+        function openMenu() {
+            mobileMenu.classList.add('active');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeMenu() {
+            mobileMenu.classList.remove('active');
+            document.body.style.overflow = '';
+        }
+
+        menuBtn.addEventListener('click', openMenu);
+        menuClose.addEventListener('click', closeMenu);
+        
+        menuLinks.forEach(link => {
+            link.addEventListener('click', closeMenu);
+        });
+
+        mobileMenu.addEventListener('click', function(e) {
+            if (e.target === mobileMenu) {
+                closeMenu();
+            }
+        });
+    </script>
 </body>
 </html>
